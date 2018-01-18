@@ -1,1 +1,0 @@
-Egzamin_opracowanie_wlasne
