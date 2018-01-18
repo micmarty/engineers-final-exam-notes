@@ -14,7 +14,11 @@ Głównie modelami są (6):
 
 - relacyjny (lata 70)
 - wielowymiarowy
-- obiektowy
+- obiektowy,
+
+
+-------------------------------------------------------------------------------------------------------
+2. Modele
 
 2.1 Model prosty, z ang. Flat, czyli płaski.
 
@@ -24,9 +28,11 @@ albo jakiś arkuszy.
 
 Rekordy są odzwierciedlone w wierszach, a ich poszczególne atrybuty są kolumnami.
 Nie ma tu miejsca na wiązanie elementów ze sobą w relacje, wszystko jest proste.
+Dane mogą się tutaj duplikować i często wyszukiwanie jakiejś istotnej informacji może być trudne.
 
 Format takiego pliku zazwyczaj sprowadza się do oddzielania kolumn jakimś znakiem specjalnym, a wiersze 
 trafiają za znakiem nowej linii.
+
 
 
 2.2 Model hierarchiczny
@@ -101,6 +107,50 @@ Plus dochodzą do tego operacje zaprojektowane do modelu relacyjnego:
 - złączenia
 
 Powszechnie wykorzystuje się do tego język SQL (Structured Query Language).
+
+
+
+2.5 Model wielowymiarowy
+
+Jest mocno związany z pojęciem hurtowni danych i systemów OLAP (Online Analytical Processing)
+Wykorzystuje się go do analizy ogromych ilości danych - czyli zastosowania typowo biznesowe.
+Przechowuje dane w postaci wielowymiarowych tabel, często obrazuje się go jako kostkę, ale
+wymiarów oczywiście może być więcej niż 3.
+
+Model wymiarowy jest bardzo przydatny w zadaniach takich jak:
+- tworzenie raportów
+- przygotowywanie wykresów
+- agregacja, filtrowanie, zwijanie i rozwijanie (np. 12 miesięcy <-> rok)
+
+Baza zawiera "fakty" opisane przez "wymiary" i "miary" (które określają wartość)
+Fakt - jakieś zdarzenie, którego dotyczy analiza np. sprzedaż produktów
+Wymiar - jakaś cecha opisująca fakt np. marka samochodu, zazwyczaj jest to wartość opisowa
+Miara - jakaś liczbowa wartość np. ilość sprzedanych samochodów
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
