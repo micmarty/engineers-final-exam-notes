@@ -1,4 +1,6 @@
-﻿1. Czym są modele danych?
+﻿8 - Modele danych stosowane w systemach informacyjnych
+
+1. Czym są modele danych?
 
 Są pewnym abstrakcyjnym opisem sposobu organizacji danych, które mamy zamiar przechowywać.
 Określają one w jaki sposób te dane są ze sobą powiązane, jakie operacje są na nich dozwolone.
@@ -7,15 +9,17 @@ Wraz z upływem czasu popularność różnych modeli zmieniała się.
 Stale próbowano jak najlepiej dopasowywać je do obecnych realiów, dlatego powstało ich kilka.
 Pierwszymi modelami danych były hierarchiczny i sieciowy (lata 60 XX wieku)
 
-Głównie modelami są (6):
-- model prosty
-- hierarchiczny (lata 60)
-- sieciowy (lata 70)
-
-- relacyjny (lata 70)
-- wielowymiarowy
-- obiektowy,
-
+Modele (7) można podzielić na generacje :
+- proste
+	- model prosty
+- klasyczne
+	- hierarchiczny (lata 60)
+	- sieciowy (lata 70)
+	- relacyjny (lata 70)
+- semantyczne
+	- wielowymiarowy
+	- obiektowy (około 85)
+	- obiektowo-relacyjny
 
 -------------------------------------------------------------------------------------------------------
 2. Modele
@@ -51,7 +55,7 @@ Nie możemy również wstawiać rekordów gdziekolwiek - każdy rekord musi mie�
 mieć taki sam typ.
 
 Hierarchia była zależna od fizycznej kolejności zapisanych rekordów (aby dostać się do węzła liścia, 
-należało przejść całą trasę do niego - czyli sekwencyjny, powolny dostęp)
+należało przejść całą trasę do niego - czyli sekwencyjny, !!! chyba nieprawda - powolny dostęp!!!)
 
 Za przykład modelu hierarchicznego może posłużyć tutaj rejestr systemu Windows albo 
 struktura katalogów na dysku.
@@ -117,7 +121,7 @@ Wykorzystuje się go do analizy ogromych ilości danych - czyli zastosowania typ
 Przechowuje dane w postaci wielowymiarowych tabel, często obrazuje się go jako kostkę, ale
 wymiarów oczywiście może być więcej niż 3.
 
-Model wymiarowy jest bardzo przydatny w zadaniach takich jak:
+Model wielowymiarowy jest bardzo przydatny w zadaniach takich jak:
 - tworzenie raportów
 - przygotowywanie wykresów
 - agregacja, filtrowanie, zwijanie i rozwijanie (np. 12 miesięcy <-> rok)
@@ -129,12 +133,28 @@ Miara - jakaś liczbowa wartość np. ilość sprzedanych samochodów
 
 
 
+2.6 Model obiektowy
 
+Przybliża myślenie o danych jak o obiektach w typowych językach opartych na paradygmacie
+programowania obiektowego.
 
+Na podstawie klasy (wzoru/szablonu) tworzy się instancje, czyli obiekty.
+W obiekcie przechowuje się dane oraz procedury. 
+Pola obiektu przechowują dane, a metody - zachowania
 
+Recz jasna wspierana jest hermetyzacja, zatem mamy kontrolę nad tym co jest widoczne z zewnątrz.
+Obiekty możemy zagnieżdżać przez odwołania(referencje) do innych i przetrzymywać je w polach.
 
+Mamy też:
+-dziedziczenie (struktury klas oraz zachowań - metod)
+	- pojedyncze
+	- wielokrotne
 
+- abstrakcja
+	- po której tylko dziedziczymy
 
+2.7 Jest jeszcze Obiektowo-relacyjny model, który jest połączeniem tych dwóch.
+Odsuwa nas od konkretnego języka, aplikacji i przybliża ponownie do aspektu danych.
 
 
 

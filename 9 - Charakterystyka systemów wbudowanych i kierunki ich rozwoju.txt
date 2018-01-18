@@ -2,45 +2,48 @@
 
 1. Czym są i do czego służą?
 
-SW są dedykowanymi systemami, z odpowiednio dobranym sprzętem i oprogramowaniem.
+Systemy wbudowane są dedykowanymi systemami, z odpowiednio dobranym sprzętem i oprogramowaniem.
 Są one zaprojektowany ściśle pod kątem wykonywania konkretnego zadania/zadań.
 Zazwyczaj oczekuje się od nich wieloletniej trwałości przy jedynie minimalnej ingerencji
-człowieka.
-To sprawia, że SW jest w opozycji do komputerów ogólnego przeznaczenia, gdzie liczy się
+człowieka po ich uruchomieniu.
+To sprawia, że systemy wbudowane są w opozycji do komputerów ogólnego przeznaczenia, gdzie liczy się
 elastyczność i mnogość funkcjonalności.
 
-2. Co daje nam taki specjalnie zaprojektowane urządzenie i oprogramowanie?
+2. Zatem co daje nam takie specjalnie zaprojektowane urządzenie i oprogramowanie?
 
-- zmniejszony koszt produkcji (zawiera tylko to, co potrzebne - zazwyczaj na jednej płytce)
-- zmniejszone rozmiary (to samo co powyżej)
-- zmniejszone zużycie prądu (to samo co powyżej)
-- zmniejszona awaryjność (przewidywalna architektura, znany cel, odpowiedni hardware
-			elementy mechaniczne są często nieporządane np. dyski HDD)
+- zmniejszony koszt produkcji 	(zawiera tylko to, co potrzebne - zazwyczaj na jednej płytce)
+- zmniejszone rozmiary 		(to samo co powyżej)
+- zmniejszone zużycie prądu 	(to samo co powyżej)
+- zmniejszona awaryjność 	(przewidywalna architektura, znany cel, odpowiedni hardware
+				elementy mechaniczne są często niepożądane np. dyski HDD)
+- zwiększoną wydajność 
+  dla konkretnych zadań 	(opłacalne są dodatkowe optymalizacje)
 
-- zwiększoną wydajność dla konkretnych zadań
-- zwiększoną stabilność (np. możliwość odzyskania sprawności bez ingerencji 
-			z zewnątrz, albo samokontrola przy pomocy watchdoga)
+- zwiększoną stabilność 	(np. możliwość odzyskania sprawności bez ingerencji 
+				z zewnątrz, albo mechanizm okresowej samokontroli przy pomocy watchdoga)
 - często możliwość pracy w czasie rzeczywistym (np. sprzęt medyczny, pojazdy)
 
 3. Obecna sytuacja i kierunki rozwoju
 
-Klasycznie SW wykorzystuje się raczej w specjalistycznych przypadkach 
+Klasycznie systemy wbudowane wykorzystuje się raczej w specjalistycznych przypadkach 
 np. bankomaty, tablice informacyjne, sterowniki pracy silnika w pojazdach, ABS, klimatyzatory,
 dyski twarde, telewizory, drukarki itd.
 
-Z roku na rok SW coraz mocniej wkraczają na rynek konsumentów np. Raspberry PI, Arduino, Blackboard
+Z roku na rok systemy wbudowane coraz mocniej wkraczają na rynek konsumencki 
+np. Raspberry PI, Arduino, Blackboard
 
-Duży potencjał leży w IoT - Internet Przedmiotów. Ilość zastosowań wzrośnie drastycznie.
-Każde takie urządzenie będzie miało połączenie z internetem, wykonywało powierzone mu zadania, zbierając
-przy tym dane.
+Duży potencjał leży w IoT - Internet Przedmiotów (moje ulubione tłumaczenie). 
+Ilość zastosowań wzrośnie wtedy drastycznie. Każde takie urządzenie będzie miało połączenie 
+z internetem, wykonywało powierzone mu zadania, zbierając przy tym dane :) .
 
-Szeroko stosowane są systemy SoC - System-on-a-chip, czyli wszystkie czujniki,komponenety są zintegrowane
-na jednej płytce (RAM, mikroprocesor, itd.). Takie rozwiązanie mocno redukuje złożoność systemu i
-obniża koszta produkcji. Czasem nie ma sensu wymieniać zepsutego komponentu, tylko wymienić całą płytkę.
+Szeroko stosowane są systemy SoC - System-on-a-chip, czyli wszystkie czujniki, komponenety są 
+zintegrowane na jednej płytce (RAM, mikroprocesor, itd.). 
+Takie rozwiązanie mocno redukuje złożoność systemu i obniża koszty produkcji. 
+Czasem nie ma sensu wymieniać zepsutego komponentu, tylko wymienić całą płytkę.
 
-Ciekawą przyszłością może okazać się stosowanie SW:
+Ciekawą przyszłością może okazać się stosowanie tych systemów w:
 - Augmented Reality
-- Egzoszkieletach lub robotach transportowych (Boston dynamics)
+- Egzoszkieletach, robotach transportowych (Boston dynamics)
 - Samochodach autonomicznych
 - MEMS (Micro Electro-Mechanical Systems)
 
