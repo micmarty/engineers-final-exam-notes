@@ -1,0 +1,61 @@
+﻿17. Zasady budowy interfejsów użytkownika systemów informacyjnych
+
+1. Czym przede wszystkim jest interfejs użytkownika
+
+Jest jakimś fragmentem aplikacji, który zajmuje się pośredniczeniem między
+użytkownikiem a jej logiką. Przyjmuje, przetwarza i prezentuje dane.
+
+Podstawową zasadą budowy jest dopasowanie do docelowych użytkowników,
+umiejętność wczucia się w ich potrzeby, możliwości i motywacje.
+
+
+
+2. Na co zwrócić uwagę?
+
+- Po co użytkownik chce korzystać z aplikacji
+- Jakie są jego umiejętności i doświadczenie
+- Elastyczność i szybka nauka
+- Nastawienie i motywacja (smutny urzędnik, czy napalony user kryptowalut)
+- Ograniczenia (niepełnosprawności np. wada wzroku, daltonizm)
+
+
+
+3. Dobrą praktyką jest stosowanie się do heurystyk Jakoba Nielsena
+jest to 10 ogólnych zasad, które sprawią, że raczej niczego nie pominiemy.
+
+1. Widoczny status systemu - paski postępu, komunikaty
+
+2. Zachowanie spójności systemu ze światem - np. symbol koszyka, dyskietki
+
+3. Danie większej swobody, kontroli userowi - możliwość cofania i powracania do akcji
+	wyłączenia muzyki, wyboru intensywności kontrastu itd.
+
+4. Trzymanie się standardów - trzymanie się czcionki, wyglądu list, okienek
+
+5. Zapobieganie błędom - wyszarzanie niedostępnych opcji, walidacja gramatyki, 
+	pytanie o potwierdzenie wysłania
+
+6. Proponuj zamiast zmuszać do zapamiętania - np. ostatnio otwarte pliki, 
+	najczęściej używane elementy
+
+7. Elastyczność i praca na skróty - autouzupełnianie zapamiętanych pól, 
+	skróty klawiszowe, możliwość automatyzacji sekwencji jakiś zadań
+
+8. Estetyczny wygląd - bez fajerwerków, jaskrawych kolorów, bez przepychu, minimalizm
+	mniej bodźców, prosty język (a nie ze świata programistów)
+
+9. Pomoc w obsłudze błędów - proponowanie rozwiązań problemu, podanie kodu błędu,
+	odnośnik do dokumentacji albo nr tel do supportu
+
+10. Pomoc i dokumentacja - jakaś strona www, efektywne wyszukiwanie po 
+	słowach kluczowych, nawigacja, zwijanie elementów
+
+
+
+4. Oczywiście istnieje dużo więcej rad dotyczących interfejsów.
+Na przykład:
+- zachowaj oryginalne proporcje obrazków
+- minimalnie 11pt czcionki
+- tekst nie może na siebie nachodzić
+- aplikacja musi być przewidywalna
+- wyróżnij kluczowe funkcje (kolorem, wielkością)
