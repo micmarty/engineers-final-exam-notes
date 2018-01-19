@@ -1,0 +1,158 @@
+﻿18 - Techniki komunikacji międzyprocesowej
+
+1. Czym jest komunikacja międzyprocesowa
+
+To sposób w jaki porozumiewają się między sobą procesy. Jak dobrze wiadomo systemy operacyjne ze względów
+bezpieczeństwa muszą ograniczać wiedzę o innych procesach, separować ich stany, dane.
+Są jednak przypadki, gdzie taka komunikacja i współpraca przynosi korzyści.
+Nie musi ona być ograniczona do 1 jednej maszyny lecz do np. klastra albo serwerów połączonych siecią.
+
+Można powiedzieć, że komunikacja może służyć do osiągania różnych celów:
+- po prostu przekazywania wiadomości
+- synchronizowania się między sobą
+- współdzielenia jakiegoś zasobu
+- wywoływania na wzajem swoich procedur (czyli kiedy są w innej przestrzeni adresowej)
+
+
+2. Metod jest całkiem sporo:
+
+1. Najprostsza to pliki: 
+
+Każdy system wspiera to rozwiązanie, bo jest to podstawa ich działania
+To może mieć sens kiedy czas nie odgrywa dużej roli, ponieważ odczyty i zapisy dyskowe mogą być
+mało efektywne przy częstej wymianie infomacji. 
+Dodatkowo mogą być problemy z jednoczesnym zapisem do pliku przez kilka procesów (niespójność), bo 
+np. był modyfikowany plik, który już w momencie odczytu był nieaktualny.
+
+
+2. Sygnały 
+
+są powszechnie wykorzystywane w UNIXach jako asynchroniczne powiadomienia o zdarzeniach.
+Dotyczy to standardu POSIX, czyli Windows tego nie wspiera w pełni, choć prowadzone były jakieś prace.
+Kiedy proces odbierze sygnał i był przygotowany na taki komunikat, czyli implementował signal handler,
+to takie "przerwanie" wchodzi do kodu obsługującego sygnał. Jeżeli program nie obsługuje sygnału, to
+jest wykonane domyślne zachowanie. Najpopularniejszy jest SIGINT i SIGKILL.
+
+3. Gniazdka albo sockety 
+
+Koncept wywodzący się z BSD - projekt Uniwersytetu Berkley.
+
+Pozwalają na połączenie ze sobą dwóch stron. Działają dwukierunkowo!
+Mogą działać lokalnie, albo w systemie rozproszonym.
+Mogą komunikować się ze sobą przez protokół IP albo lokalnie. Możliwe jest przesyłanie z i bez gwarancji
+dostarczenia wiadomości (TCP lub UDP). Ma to sens przy serwerze X-ów.
+
+Na lokalnym komputerze gniazda są podobne do potoku, tylko ze potoki są strumieniem z gwarancją 
+dostarczenia, a gniazka nie muszą (można używać UDP)
+
+
+4. Kolejki komunikatów (message queues)
+
+Asynchroniczny protokół w obrębie jednego procesu/systemu operacyjnego.
+
+Komunikaty trafiają do kolejki, gdzie czekają na ich odebranie przez inny proces.
+Program musi implementować nasłuchiwanie kolejki. Bardzo przydatne do broadcastowania informacji
+wielu procesom na raz
+
+
+5. Potoki (pipes)
+
+5.1 Nienazwane/anonimowe
+
+Komunikacja między dwoma procesami, gdzie są wyjście jednego procesu jest łączone z wejściem innego.
+To pozwala tworzyć cały ciąg zależności, dlatego "potok". 
+Potok jest anonimowy i żyje tylko wtedy kiedy wykorzystujące go procesy.
+
+Tak na prawdę to pipe jest buforem, który strumieniuje te dane, ale robi to tylko w jedną stronę!
+Procesy mogą decydować same o tym jak szybko przetwarzają dane z bufora. 
+
+W standardzie BSD domyślna wielkość to 512B, w Linuxie 4kB, potem 64kB - można to zmieniać dowolnie ponoć
+
+Dobrą praktyką jest zamykanie tej strony pipa, z której nie korzystamy.
+
+
+5.1 Nazwane (named pipes)
+
+To po prostu plik zorganizowany w strukturę FIFO. Jest rozwinięciem tych anonimowych.
+Musi zostać jawnie utworzony i jawnie usunięty po zakończeniu pracy!
+Mogą pojawiać się konflikty, niespójność danych przy kilku procesach, które prowadzą zapis.
+
+
+6. Semafory (semaphores)
+
+Zmienna, która jest chroniona i pozwala kontrolować lub synchronizować dostep kilku procesów 
+do wspólnego zasobu.
+
+Może być binarny (dostęp lub nie) lub zliczający (kiedy kilka procesów może robić coś razem)
+Jeżeli wynosi 0 to znaczy że proces żądający dostępu zostaje uśpiony (ma czekać).
+
+
+7. Pamięć współdzielona (shared memory)
+
+Wydzielony fragment pamięci wirtualnej (przestrzeni dyskowej lub adresowej - RAM), gdzie naraz 
+mogą wymieniać się informacjami procesy. Działa tylko lokalnie (z oczywistych względów).
+
+Skoro procesy używają jednej pamięci to unikają zjawiska redundancji danych.
+RAM daje sporą wydajność tej metodzie.
+Aby nie doprowadzać do konfliktów stosuje się np. semafory
+
+
+8. RPC (Remote Procedue Call)
+
+Zdalne wykonanie jakiegoś kodu na innym komputerze w sieci.
+Potrzebny jest do tego tzw. klient i serwer. Klient wysyła jakąś paczkę informacji z żądaniem
+o konkretną metodę (np. JSON). Serwer wykonuje po swojej stronie akcję i odsyła odpowiedź zwrotną.
+
+Implementacje: JSON-RPC, Java RMI, singalR, CORBA
+
+
+9. Przekazywanie komunikatów (message passing)
+
+Powiązane z metodą RPC. Pozwala wykonać akcję na wielu urządzeniach albo na jednym.
+Działa oczywiście w systemach rozproszonych (przez sieć).
+
+Urządzenia nie mogą nadpisywać sobie danych (tak jak w shared memory). Każdy tylko dzieli się 
+rezultatami swojej pracy.
+
+RPC, RMI, MPI, CORBA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
