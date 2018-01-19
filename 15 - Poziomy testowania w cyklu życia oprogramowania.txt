@@ -1,0 +1,105 @@
+﻿15 - Poziomy testowania w cyklu życia  oprogramowania
+
+1. Testy jednostkowe (zwane modułowymi)
+2. Testy integracyjne
+3. Testy systemowe
+4. Testy akceptacyjne
+
+1. Testy jednostkowe
+
+Poszukuje się defektów w poszczególnych komponentach, testując je w separacji od siebie.
+Dla każdego z nich sprawdza się czy realizują zakładane funkcje i czy robią to dobrze.
+
+Zazwyczaj kod testuje autor lub inni programiści, niestety nie mają oni pełnej motywacji do
+zrobienia tego właściwie, albo wpadają w pułapkę własnej wiedzy -> to znaczy, że nie potrafią 
+świeżo spojrzeć na problem. Testerzy natomiast nie mają pełnej wiedzy o systemie.
+
+Dobrą praktyką jest korzystanie z TDD -> Test Driven Development - najpierw test, 
+potem kodowanie funkcjonalności.
+
+Proces testów jednostkowych jest niesformalizowany, często traktowany jako balast, ale jeżeli
+błędy przedostaną się na wyższy poziom testów, to problemy tylko się nawarstwiają i powodują straty.
+
+Ciężko jest uzyskać 100% pokrycia.
+
+Typowymi usterkami są:
+- wycieki pamięci
+- błędy w runtime
+- brak weryfikacji parametrów wejściowych
+
+
+
+2. Testy integracyjne
+
+Sprawdzają integrację pomiędzy modułami albo systemami.
+Podstawą jest tutaj zweryfikowanie komunikacji między nimi, z systemem operacyjnym, sprzętem.
+Już na tym etapie powinno się badać wydajność i szukać luk bezpieczeństwa.
+
+Są różne strategie:
+- skokowo (big-bang integration)
+	- scalamy wszystko na raz -> wysokie ryzyko niepowodzenia
+- przyrostowo
+	- wstępująco (bottom-up)
+	- zstępująco (top-down)
+	(obrazowo mozna to przedstawic na strukturze drzewa - teraz te pojęcia stają się proste)
+
+
+
+3. Testy systemowe
+
+Dotyczą wszystkich funkcji zintegrowanego już systemu na docelowych systemach operacyjnych i sprzęcie.
+Testerzy muszą przygotować środowisko testowe tak, aby spełniały wszystkie scenariusze 
+przypadków użycia i wyspecyfikowanych wymagań.
+
+Od tego testu zależy czy system nadaje się do pełnienia funkcji biznesowych 
+(wprowadzenia na rynek/przekazania klientowi)
+
+Optymalnym jest aby testy wykonywał zupełnie inny zespół ludzi.
+Trzeba koniecznie przetestować wszystkie wymagania funkcjonalne i niefunkcjonalne, np. technikami
+blackbox i whitebox (perspektywa klienta lub ze znajomością systemu od wewnątrz)
+
+Testy systemowe są tak na prawdę szeregiem testów, przykładami są:
+- funkcjonalne
+- wydajnościowe
+- regresywne
+- bezpieczeństwa
+- instalacji
+- interfejsu
+
+
+4. Testy akceptacyjne
+
+Potwierdzają poprawność działania całego systemu, zgodność z umową i prawem.
+Przeprowadzane są już przy obecności klientów (+ docelowych użytkowników)
+Na tym etapie zakładamy, że błędów nie ma (nie powinno ich być), teraz powinno się jedynie zapewnić
+sobie zaufanie klienta.
+
+Demonstruje się działanie aplikacji i wypuszcza testy alfa oraz beta.
+Wynikiem jest: przyjęcie, odrzucenie, akceptacja warunkowa
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,142 @@
+﻿16 - Klasy języków programowania na wybranych przykładach
+
+1. Języki można dzielić na różne kategorie, w zależności od perspektywy z jakiej na nie patrzymy.
+
+Możemy je chcociażby dzielić wg:
+- generacji
+- imperatywności bądź deklaratywności
+- paradygmatów
+- sposobu kontroli typów
+
+1. Podział wg generacji:
+
+1GL - języki maszynowe, 
+- ciąg 0 i 1 
+- poziom sprzętowy
+- nie potrzebują kompilatora, bo są wykonywane bezpośrednio przez procesor
+
+
+2GL - asemblery
+
+Są związane z konkretnymi architekturami i ich zestawem instrukcji
+- potrzebują kompilatora, który zamieni kod do języka maszynowego
+- wprowadzają ułatwienia w postaci zmiennych, etykiet
+- często są skomplikowane pod względem interpretacji kodu, ale w działaniu są bardzo proste
+- różne kompilatory maja zazwyczaj inną składnie, czyli nie można przenieść 
+	łatwo juz napisanego kodu
+
+Przykładem jest MASM, NASM
+
+
+3GL - języki wysokopoziomowe
+
+W zasadzie kiedy myślimy o języku programowania, to kojarzy się nam z językami na tym poziomie, czyli:
+C++, Java, C#, Ruby, Python, Go, itd.
+
+- aby uruchomić ten sam kod na innej platformie, wystarczy przekompilować przy pomocy
+	innego kompilatora (ale kod nadal jest ten sam). Wyjątkiem są tutaj te oparte o VM:
+	Java z bytecodem i C# z CLR
+- oczywiście tutaj zaliczają się też języki interpretowane takie, czyli takie które kompilacji 
+	nie wymagają.
+- często nie musimy się martwić o zarządzanie pamięcią
+
+
+4GL - 
+
+Definiują co ma być zrobione, a nie jak ma działać (nie piszemy algorytmów)
+Sprawiają, że kod jest dużo krótszy, dużo rzeczy dzieje się under-the-hood.
+Jest bardzo przyjazny programiście, zdejmuje z niego dużo uciążliwych obowiązków.
+
+Przykłady:
+html, prolog, sql, matlab, narzędzia do tworzenia GUI
+
+5GL - Języki, które same potrafią znaleźć rozwiązanie na podstawie podanych warunków i ograniczeń.
+Bardzo często są językami deklaratywnymi. 
+
+Przykładem jest może być Wolfram (choć pasuje on mocno do 4GL)
+Podsumowanie: granice między 3, 4, 5GL nie są sztywne, mocno się ze sobą przenikają.
+
+
+
+2. Podział wg imperatywności lub deklaratywności
+
+Te pierwsze to takie w których konstruuje się algorytm, czyli sekwencje rozkazów.
+
+Te drugie nie definiują algorytmu, tylko cel który ma zostać osiągnięty.
+Języki te są dużo bardziej skomplikowane i nie dają nam pełnej władzy nad rezultatem.
+
+
+
+3. Podział wg paradygmatów
+
+Proceduralne - dzieli się kod na fragmenty które wykonują jakąś konkretną
+		operację, pobiera się dane z argumentów, zwraca wynik.
+		Odchodzi się od przechowywania globalnego stanu.
+
+		Przykłady: C, FORTRAN
+
+Obiektowe - łączymy dane i zachowania w obiekty.
+		Komunikują się one między sobą wykonując tylko to za co są odpowiedzialne.
+		Pisze się łatwiej programy, organizuje kod i utrzymuje w przyszłości.
+		Jest obecnie najpopularniejszm paradygmatem
+
+Funkcjonalne - 
+	Przybliża programowanie do matematycznego podejścia do problemów.
+	Zawiera się w podejściu deklaratywnym. Tutaj wszystko kręci się 
+	wokół funkcji. Nie ma tutaj takiego czegoś jak zmienne, pętle. 
+	Przechowywanie stanu jest mocno niepożądane. Na porządku dziennym 
+	wykorzystuje się rekurencje.
+	
+	Przykłady: Haskell (czysto funkcyjny), Scala, Lisp, F#
+
+W logice - Dostajemy jakiś zestaw zależności, zasad i na ich podstawie 
+	uzyskuje się odpowiedzi. W skrócie pokrywa się z podejściem deklaratywnym
+
+Strukturalne - Po prostu dzielenie kodu na bloki, bez wykorzystywania goto.
+		Powinno się używać if else, while, repeat. 
+		Właściwie to każdy popularny język jako tako to posiada.
+		Podnosi czytelność kodu i pozwala lepiej odnaleźć się w przepływie
+		sterowania.
+
+4. Podział wg kontroli typów
+
+Dynamiczne - typ zmiennej wynika z aktualnie przechowywanej wartości i nie jest z góry zdefiniowany
+		Wadą jest to, że o błędach dowiemy się dopiero po obserwacji działania programu.
+Statyczne - typ znamy od momentu deklaracji, naruszenie powoduje błąd kompilacji lub runtime.
+		Nakłada kontrolę na programistę, utrudnia prototypowanie, ale ułatwia znajdowanie
+		problemów i zazwyczaj pozwala na szybsze działanie.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
