@@ -1,0 +1,122 @@
+﻿P3 - Architektura wielowarstwowa a wielopienna
+Multi-layer vs Multi-tier
+https://enauczanie.pg.edu.pl/moodle/pluginfile.php/198774/mod_resource/content/1/02%20Projektowanie%20architektury.pdf
+
+1. Rozróżnienie
+
+Ta pierwsza odnosi się do podziału logicznego, czyli podziału na 
+moduły jako kod, a druga do fizycznego, czyli pełnionych przez sprzęt funkcji.
+
+
+
+2. Architektura wielowarstwowa
+
+Polega na odseparowaniu logiki prezentacyjnej od logiki tworząc pomiędzy jeszcze kilka warstw.
+Warstwy te mogą porozumiewać się tylko z sąsiednimi.
+
+Takie podejście do sprawy pozwala rozwijać każdą z nich osobno, lepiej podzielić prace.
+Należy zadbać o to by dbać o izolację między nimi, tak by zmiany i błędy nie propagowały 
+się bezpośrednio na inne warstwy.
+
+Najczęściej stosuje się architekturę trójwarstwową
+
+trójwarstowa:
+- prezentacji
+- logiki biznesowej
+- danych
+
+czterowarstwowa:
+- prezentacji
+- serwisów
+- logiki biznesowej
+- danych
+
+Zalety modelu warstwowego:
+- możliwość równoczesnej pracy nad elementami systemu
+- łatwość podmiany komponentów na inne, np. bazę danych na inną
+- zawsze można scalić 2 w 1, albo rozdzielać 1 na 2
+- lepszy podział prac w zespole wg umiejętności
+- reużywalność kodu w innych projektach
+- łątwość w rozszerzaniu
+
+
+
+3. Architektura wielopienna
+
+Polega na tym, żeby rozłożyć odpowiedzialność działania aplikacji na więcej niż 1 maszynę fizyczną.
+Jest więc ona zależna od warstw stworzonych w architekturze wielowarstwowej!
+Na jeden poziom może przypadać kilka maszyn.
+
+Pień (stub) jest grupą maszyn o wspólnym zadaniu.
+
+
+3.1 Architektura jednopienna
+Deweloperzy często prototypują proste aplikacje w architekturze jednopiennej, na jednej maszynie.
+
+Zalety:
+- bardzo proste
+- szybkie w realizacji
+
+Wady:
+- duże obciążenie
+- ryzyko odcięcia całej aplikacji
+- słaba skalowalność
+- wysoki koszt mainframów
+
+
+3.2 Architektura dwupienna
+
+Opartę o architekturę klient-serwer, gdzie część pracy jest na niego przenoszona.
+U niego jest prezentacja, a po stronie serwera logika i dane.
+
+Zalety:
+- tanie i proste
+- trochę lepsza skalowalność
+- odciążamy lekko serwer
+
+Wady:
+- nadal pozostaje podatność na awarię
+- więcej użytkowników zauważalnie może zmniejszyć wydajność
+
+
+3.3 Architektura trójpienna
+
+Klient ma warstwę prezentacji, inny serwer logikę aplikacji, jeszcze inny udostępnia bazę danych.
+
+
+Zalety:
+- duża skalowalność
+- wyższa wydajność
+- równoważy obciążenie
+
+Wady:
+- duży koszt
+- dużo czasu idzie na projektowanie, konfigurację i implementację
+
+
+3.4 Architektura wielopienna
+
+Klient - prezentacja
+Serwer WWW - serwujący statyczne zasoby
+Serwer aplikacji - logika biznesowa
+Serwer danych - baza
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
