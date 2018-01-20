@@ -1,0 +1,227 @@
+﻿19 - Główne techniki zwiększania wydajności współczesnych procesorów
+
+1.
+Na przestrzeni lat wymyślono mnogość technik, które pozwalają wykrzesać większą prędkość wykonywania
+instrukcji przez procesory. 
+
+
+2. Techniki
+
+2.1 Pierwszym nasuwającym się pomysłem i najprostszym teoretycznie do osiągnięcia jest
+ZWIĘKSZANIE TAKOWANIA.
+
+Taktowanie domyślne, kiedy procesor opuszcza produkcję jest uwarunkowane jakością krzemu,
+miejsca w którym znajdował się fragment na waflu, domieszkowania itd.
+
+Podkręcanie jest oczywiście możliwe później z poziomu BIOSu, UEFI, nawet z poziomu systemu operacyjnego.
+
+Niestety fizyka stawia przed nami pewne granice: chodzi o ciepło.
+Czym większe napięcie, tym więcej ciepła generowane przez tzw. gate delay
+Można obniżać napięcie, ale wtedy mniejsza jest granica w tranzystorach między on i off, co
+może prowadzić do niestabilności i spowolnienia procesora
+
+Rekord to około 8.8 GHz, tak czy siak realnie mówi się o granicy 4GHz.
+Zmiana technologii na grafenową albo jeszcze inną mogłaby odblokować tę granicę.
+
+
+2.2 Pamięć cache
+https://youtu.be/WDIkqP4JbkE?t=18m55s
+
+Nawet gdyby procesory miały wyższe taktowanie, to i tak spowalniały by je urządzenia I/O, 
+albo co gorsza RAM. Dlatego wykorzystuje się bardzo małą, ale szybką pamięć położoną wewnątrz 
+układu procesora. Jest to pamięć S-RAM, która jest jednocześnie droga w produkcji.
+
+Cache pośredniczy między CPU i RAM, jeżeli dane w cache już się znajdują to -> cache hit
+jeśli nie to -> cache miss.
+Predykcją zajmuje się hardware, który kontroluje jak często to co potrzebuje znajduje się w pobliskiej
+linii cache jakimiś licznikami. Czym lepiej przewiduje tym szybciej wykonują się intstrukcje.
+
+Szybko okazało się, że jej jedna pamięć jest niewystarczająca, dlatego dodawano z czasem kolejne 
+poziomy cache: L2 i L3, swego czasu L4.
+(Haswell ma nawet L4 do współdzielenia ze zintegrowanym GPU, 128MB. Pomysł podobno porzucono)
+
+L1 code   64 kB, 3-4 -> 1ns, około 95-97% hit rate
+L1 data   16 kB, 3-4 cykle zegara
+L2        1-2 MB, 20 cykli zegara
+L3        8 MB, 90 cykli zegara, współdzielone między rdzenie
+
+
+Można postawić sobie pytanie czemu wielkość L1 tak wolno wzrasta?
+Otóż więcej pamięci sprawia, że ciężej jest go przeszukiwać.
+
+
+
+2.3. Instrukcje SIMD (Single Instruction Multiple Data)
+
+Kolejnym pomysłem jest opracowanie instrukcji, które wykonują operację na kilku zestawach danych 
+jednocześnie.
+
+Zastosowanie znajduje to w przy multimediach i grafice.
+Czyli praca z wektorami danych, np. piksele obrazu z RGBA, 
+(jeśli chcemy rozjaśnić ileś pikseli to po co robić to w pętli, skoro mozna na raz)
+
+W rodzinie x86 pojawiły się instrukcje MMX (MultiMedia eXtenstion) - 1996rok
+Potem SSE (Streaming SIMD Extension), SSE2, SSE3, SSSE3, SSE4
+
+Wydajność zyskujemy tylko wtedy kiedy faktycznie używamy tych instrukcji albo kompilator!
+
+
+
+2.4 HyperThreading
+
+Technologia Intela, która na jednym rdzeniu procesora pozwala wykonywać więcej niż 1 zadanie na raz.
+Rzadzko zdarza się w praktyce wykorzystywać procesor w 100%, często czeka on na otrzymanie danych.
+
+Hyper Threading polega na tym, że wprowadza się zapasowe, duplikuje komponenty procesora 
+przechowujące stany, co pozwala na szybsze przełązanie się między wątkami. 
+W zasadzie to to jest trochę SUPERSKALARNOŚĆ!
+
+Tak więc mamy z jednego rdzenia dwa procesory logiczne widoczne w systemie.
+Dzięki tym nadmiarowym komponentom pozwalamy na równoległą pracę różnym zadaniom.
+
+Teoretyczny zysk to 30%, ale w praktyce nie przekracza 20%.
+
+
+
+2.5 Wielordzeniowość
+
+Obecnie prawdopodobnie najbardziej eksploatowana. Polega na dokładaniu do jednej obudowy większej
+liczby procesorów.
+
+Aby utrzymywać poziom poboru energii i wytwarzanego ciepła zmniejsza się nieco taktowanie, ale zyski
+nadal są widoczne. No ale jeżeli procesor nie wykorzystuje wszystkich rdzeni na raz, to warto wyłączyć
+nieużywane i przyspieszyć ten jeden używany - jest to technologia TurboBoost.
+
+Ta technika wymaga, aby aplikacje efektywnie wykorzystywały kilka rdzeni.
+
+
+2.6 Ulepszanie mikroarchitektury procesorów
+
+2.6.1 Potokowość (pipelining)
+
+Po co wykonywać jedną instrukcję w całości na raz...
+Można przecież podzielić ten proces na fazy, do osobnych odpowiedzialnych za jedną rzecz komponentów.
+Ta technika budowy procesorów dzieli logikę procesora na grupy wyspecjalizowanych jednostek.
+Każda z tych grup zajmuje się tylko częścią pracy przy wykonaniu rozkazu.
+
+Grupy te są połączone w tzw. potok, dzięki czemu można wykonywać po sobie kilka instrukcji w różnych
+stadiach wykonania.
+
+Fazy:
+1. Instruction Fetch (IF) - Pobranie instrukcji z pamięci
+2. Decode (ID) - Zdekodowanie instrukcji
+3. Execute (EX) - Wykonanie instrukcji
+4. Memory access (MEM) - Dostęp do pamięci
+5. Write-back (WB) - Zapisanie wyników działania instrukcji
+
+Może istnieć więcej faz potoku, ale teraz możemy na raz wykonać 5 instrukcji nie marnując
+żadnych zasobów. Statystycznie więc 1 instrukcja = 1 cykl, a nie 5 gdyby były wykonywane oddzielnie.
+
+Jest kilka problemów związanych z Pipeliningiem:
+- Kiedy np. obok siebie występują instrukcje wykorzystujące ten sam rejest, tak że wynik 
+jest zależny od kolejności!
+
+- Co jeśli kiedy mamy dirty read, czyli druga instrukcja pobrala dane, ktore po chwili podmienila
+instrukcja pierwsza
+Czasamy musimy więc czyścić potok (pipeline stalling), wtedy wsadzane są NOPy, które nazywamy
+pipeline bubble (bo się przesuwają przez fazy marnując zasoby).
+
+- Co z rozgałęzieniami! czyli instrukcje warunkowe. Musimy przewidywać, zgadywać czy opłaca dopełniać
+się potok instrukcjami za tym rozgałęzieniem. Jeśli nietrafimy, to trzeba go wyczyścić, aby złe instrukcje
+się nie wykonały. Trzeba wtedy przechowywać historię, jakiś licznik który zwiększamy jeśli zgadujemy
+i zerujemy jesli nie trafiliśmy.
+Czym dłuższy potok (więcej faz) tym większe straty. Dlatego aby zmniejszyć ryzyko wykorzystuje się
+REGISTER RENAMING
+
+2.6.2 Register renaming
+
+Instrukcje używają innych rejestrów, które spowodują, że instrukcje w potoku nie są od siebie zależne.
+
+
+2.6.3 Out-of-the-order execution
+
+Dopasowywanie kolejności instrukcji tak aby pasowały do potoku nie powodując przestojów
+czyli żeby minimalizować czas bycia idle
+
+2.6.4 Superskalarność
+
+Wykonywanie wielu instrukcji na cykl dzięki zduplikowanym jednostkom funkcyjnym procesora.
+Każda z taka jednostka nie jest osobnym rdzeniem tylko czymś takim jak: ALU, bit shifter, koprocesor
+
+Czyli procesor wielordzeniowy nie oznacza że jest jednocześnie superskalarny!
+
+2.6.5 VLIW - Very Long Instruction Word
+
+Zrzucamy odpowiedzialność za wydajność i optymalizację kodu na kompilator.
+Układa on instrukcje w taki sposób aby jak najkorzystniej wypełniać potok, 
+usuwać niechciane zależności.
+
+W przeciwieństie do superskalarności gdzie instrukcja nie ma świadomosci dodatkowych jednostek wykonawczych
+to przy VLIW instrukcje są typu MIMD (Multiple Instructions Multiple Data)
+
+Predykcja rozgałęzień już nie jest problemem, bo zrzucono to na kompilator :)
+
+2.6.6 Użycie jeszcze innej architektury np. RISC
+
+Chodzi głównie o to jak bardzo architektura współgra z technikami.
+
+CISC ma mnóstwo instrukcji, które gromadziły się przez te wszystkie lata, dużo z nich nie jest
+wykorzystywanych no i trwają różną ilość cykli.
+Nierzadzko zajmuje im to kilknaście cykli procesora - pojawia się problem gdzie realizować przerwania. 
+
+Intel przybliża się do architektury RISC ze względu na możliwość lepszej optymalizacji
+
+
+RISC (Reduced Instruction Set Computers) polega na uproszczeniu ilosci instrukcji do tych najprostszych.
+Zauważono, że tylko kilkanaście się w kółko powtarza. Zostawiono tylko to co potrzebne i zoptymalizowano
+na maxa. 
+
+- Nie ma tutaj instrukcji pamieć-pamięć
+- Każda instrukcja trwa 1 cykl zegara
+- Wspaniale współpracują z superskalarnością i potokowością
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
