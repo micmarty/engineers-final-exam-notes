@@ -1,0 +1,89 @@
+﻿P5 - Zasady wytwarzania i integracji usług webowych (UDDI, WSDL, SOAP)
+
+1. (Definicja usługi webowej, czym jest?)
+1.1 Podstawowym pojęciem w tym temacie jest usługa webowa, jej istota jest całkiem prosta.
+
+To jakiś komponent systemu, niezależny od implementacji (nie interesuje nas jak coś działa w środku), 
+który przyjmuje, przetwarza i odpowiada na żądania.
+
+Czyli jest tak na prawdę interfejsem do wymiany informacji klienta z aplikacją.
+Opieramy się na modelu klient-serwer. 
+
+1.2 Jak to działa?
+
+- Klient wysyła żądanie w określonym formacie
+- Serwer odbiera i decyduje, której usłudze je przekaże
+- Usługa wykonuje jakieś akcje, metody, przygotowuje odpowiedź
+- Zwraca odpowiedź na żądanie z powrotem do klienta odpowiednio sformatowaną
+
+Przykład:
+np. Chcemy pobrać tweety sprzed 4 tygodni o konkretnej ilości znaków i ilości serduszek
+
+'''
+webowa różni się tym od sieciowej, że
+
+webowa -> odwołujemy się do niej przez URI
+sieciowa -> przez adres IP, np. FTP
+'''
+
+Komunikacja między klientem odbywa się przez protokół HTTP, zazwyczaj z wykorzystaniem 
+popularnych formatów XML i JSON.
+
+
+
+2. (Technologie web service)
+Istnieje mnogość różnych technologii związanych z usługami webowymi.
+Najlepiej opierać się na tych zweryfikowanych, popularnych, no bo nie powinniśmy stawiać
+barier ludziom, którzy mają z nich korzystać.
+
+Mamy:
+- SOAP
+- UDDI
+- WSDL
+- REST
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
