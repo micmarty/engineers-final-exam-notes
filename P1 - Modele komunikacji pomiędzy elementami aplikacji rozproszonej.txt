@@ -1,0 +1,152 @@
+﻿P1 - Modele komunikacji pomiędzy elementami aplikacji rozproszonej
+
+1. Podstawowe rozróżnienie na komunikację:
+- synchroniczną 
+- asynchroniczną
+
+Synchroniczna polega na wykonywaniu akcji na ustalony takt zegara.
+Jest to model blokujący, ponieważ jeśli wyślemy żądanie, to czekamy na uzyskanie odpowiedzi.
+Jeśli jedna strona nadaje, to druga musi to odbrać i dopiero wtedy można znowu nadawać.
+
+Charakterystyka:
+- wyżej wspomniane blokowanie
+- świadomość obu stron o wzajemnej komunikacji
+- trzeba synchronizować ze sobą zegary
+- komunikacja przebiega wedle ustalonego porządku
+
+Przykład:
+- Drukarka drukuje jedną stronę na raz, druga strona zacznie się dopiero po skończeniu pierwszej
+- Rozmowa telefoniczna 2 osób
+
+
+Asynchroniczna polega na nadaniu wiadomości i nieoczekiwaniu na odpowiedź.
+Zrzucamy odpowiedzialność za odebranie i przetworzenie informacji na drugą stronę.
+Druga strona może odesłać odpowiedź i nazywamy to callbackiem.
+
+Czyli charakterystyka:
+- brak blokowania
+- niekonieczna świadomość drugiej strony
+- komunikacja nie ma ustalonego przebiegu
+- bardziej do czasu rzeczywistego
+
+Przykłady:
+- Pisanie SMSów
+- Oglądanie streama
+
+
+2. Model Send-receive
+
+Model synchroniczny, czyli blokujący ale jednocześnie gwarantujący dostarczenie.
+Nadawca nie może nadawać przed otrzymaniem odpowiedzi.
+Obie strony są siebie świadome.
+
+Przykłady:
+- POSIX sockets (gniazdka) -> Wystarczy utworzyć gniazdko po obu stronach (klient-serwer) i
+	za pomocą send() orad receive()
+- MPI (Message Passing Interface)
+- PVM (Parallel Virtual Machine)
+
+
+3. Model Invoke-return
+
+W przeciwieństwie do poprzedniego ukrywa obecność jednej ze stron.
+Polega na wywołaniu operacji na zdalnym obiekcie, ale jest to bardzo podobne do wywoływania
+jej na lokalnym obiekcie. Jesteśmy natomiast zależni od tego jak druga strona implementuje 
+daną funkcję.
+
+Można realizować na modelu:
+- synchronicznym
+- asynchronicznym (przez callback albo pooling)
+
+Przykłady:
+- RPC, JSON RPC, XML RPC (Remote Procedure Call)
+- CORBA
+- RMI (Remote Method Invocation)
+
+W RMI jest stub czyli lokalny obiekt u klienta, który zawiera metody jak obiekt remote,
+ale my nie musimy sie martwić o ściągnięcie tych danych, tylko on robi to w środku.
+(Czyli warstwa abstrakcji jakby)
+
+
+4. Model Messaging
+
+Jest asynchroniczna. 
+Operujemy na obiekcie wiadomości, która trafia do jakiegoś systemu pośredniczącego.
+Ten system sam zajmie się dostarczeniem wiadomości do odbiorcy, nawet gdy jest on czasowo 
+nieosiągalny. Zakolejkuje, poczeka i dostarczy z opóźnieniem.
+
+Mamy więc gwarancję dostarczenia, ale nadawca nie musi się o to martwić (przerzucenie odpowiedzialności)
+Oczywiście możemy zmusić system to NIETRWAŁEGO zachowania, czyli porzucania wiadomości jeśli nikt
+nie może jej odebrać.
+
+Odbiorów może być wielu. 
+Można korzystać z trybu:
+- Publish/Subscribe - jeden nadawca, wielu odbiorców
+- Request/Reply - jeden nadawca, jeden odbiorca
+
+Przykłady:
+- Postfix
+- JMS (Java Message Service)
+
+
+5. Model Stream
+
+Jest asynchroniczny.
+
+Polega na przesyłaniu nieprzerwanej sekwencji danych, nadawanych w czasie rzeczywistym.
+Odbiorca zazwyczaj korzysta z bufora, który pozwoli musz przetworzyć, nadążyć za nadawcą.
+Zazwyczaj nie jest koniecznym wyłapywanie wszystkich informacji.
+
+Przykład to strumieniowanie audio/wideo.
+
+Nadawane dane mogą przybierać postać ciągłą albo dyskretną.
+Możemy nadawać treści proste (np. samo audio) albo złożone (audio i wideo)
+
+Czasem wymagane jest by opóźnienie odbiorcy nie przekraczało jakiegoś czasu 
+wtedy jest to trochę synchroniczne, izochroniczne (?)
+
+Jeżeli nie mamy takich restrykcji to jest normalnie asynchroniczne
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
