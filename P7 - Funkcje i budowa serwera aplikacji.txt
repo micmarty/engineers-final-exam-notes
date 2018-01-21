@@ -5,6 +5,22 @@ Zazwyczaj kiedy korzystamy z gotowych frameworków np. Rails, Spring, Django to 
 obsługiwać żądania potrzebny jest zestaw bibliotek, konfiguracji.
 W przypadku Javy serwery takie implementują standard JEE.
 
+
+0. Bardzo często myli się serwer aplikacji z webowym
+
+Różnica polega na tym, że webowy:
+- serwuje statyczne pliki, kiedy nie wymagają ingerencji aplikacji
+czyli html, css, js itp.
+
+- zazwyczaj są bardzo szybkie, przetwarzają wiele żądań jednocześnie
+- nie realizują żadnej logiki biznesowej
+- nie mają dostępu do np. bazy danych 
+- stoją przez serwerem aplikacji, wyręczając go kiedy można
+
+Przykłady:
+Apache HTTP Server, Nginx, WEBrick
+
+
 1. Funkcje
 
 - Udostępniają biblioteki dla aplikacji np. w postaci binarek (parsowanie xml, html
@@ -34,4 +50,4 @@ Przykłady:
 
 JEE - Apache Tomcat, Glassfish, JBoss Wildfly
 .NET - Windows Server
-Rails - Puma, Webrick, Unicorn
+Rails - Puma, Unicorn
