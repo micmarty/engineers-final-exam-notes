@@ -77,7 +77,7 @@ WSDL nie zawiera informacji o usługodawcy! - tym zajmuje się UDDI
 Ma przygotowany szereg elementów/tagów które umieszczamy wewnątrz roota -> <definitions>
 
 
-2.3 Kolejną technologią usług webowych jest SOAP  (TU JEST COS CHAOTYCZNIE - przeformatowac)
+2.3 Kolejną technologią usług webowych jest SOAP 
 z ang. Single Object Access Protocol, czyli protokół zdalnego dostępu do obiektów.
 
 Niezależny od języka programowania, platformy i formy transportu!
