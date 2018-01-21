@@ -1,0 +1,37 @@
+﻿P7 - Funkcje i budowa serwera aplikacji
+
+Serwer aplikacji jest środowiskiem uruchomieniowym dla aplikacji webowej.
+Zazwyczaj kiedy korzystamy z gotowych frameworków np. Rails, Spring, Django to aby mogły one
+obsługiwać żądania potrzebny jest zestaw bibliotek, konfiguracji.
+W przypadku Javy serwery takie implementują standard JEE.
+
+1. Funkcje
+
+- Udostępniają biblioteki dla aplikacji np. w postaci binarek (parsowanie xml, html
+
+- Utrzymują konfigurację np. ilość wątków do przetwarzania żądań, wyeksponowany port, domyślny język, podpięcie dostawcy bazy danych
+
+- Komunikacja z web serverem kiedy ten nie potrafi obsłużyć żądania sam
+
+- Load balancing
+
+- Zarządzanie sesją
+
+- Dostęp do bazy danych
+
+- Stanowi logikę aplikacji
+
+- Wstrzykiwanie zależności
+
+- Regulują dostęp do zasobów (autoryzacja, uwierzytelnianie)
+
+2. Budowa
+
+Każdy serwer posiada interfejs tekstowy, niektóre z nich pozwalają na interakcję przez strony HTML
+
+
+Przykłady:
+
+JEE - Apache Tomcat, Glassfish, JBoss Wildfly
+.NET - Windows Server
+Rails - Puma, Webrick, Unicorn
