@@ -37,15 +37,133 @@ Najlepiej opierać się na tych zweryfikowanych, popularnych, no bo nie powinni�
 barier ludziom, którzy mają z nich korzystać.
 
 Mamy:
-- SOAP
 - UDDI
 - WSDL
+- SOAP
 - REST
 
 
+2.1 Warto rozpocząć od wytłumaczenia czym jest UDDI
+z ang. Universal Description Discovery and Integration
+
+Jest to rejestr usług utworzony przez ich dostawcę, po to by klient mógł wyszukać i przejrzeć
+interesujące go usługi i zapoznać się ze sposobem korzystania z nich.
+Opiera się na formacie XML.
+
+Jest to dosyć stara inicjatywa (2001 około), staje się coraz mniej popularna (aktyność około 2007). 
+
+Usługi mozna na 3 poziomowo (trochę jak książka telefoniczna):
+- białe strony (white pages) - podstawowe informacje o firmie, adresy, dane kontakowe
+- żółte strony (yellow pages) - więcej szczegółów oraz kategorię usługi, warunki korzystania
+- zielone strony (green pages) - techiniczny opis, adresy URL do pliku WSDL
+
+Głównymi problemami UDDI jest autoryzacja użytkowników, zbyt ciężkie podejście do tematu
+i to że UDDI istniało tylko dzięki Microsoftowi, IBM i SAPom. 
+
+(W momencie kiedy dla nich UDDI stało się problematyczne, to UDDI padło. 
+Ponoć Apache ma jUDDI, ale szału nie ma)
+
+
+2.2 Czym jest ten WSDL zatem?
+z ang. Web Service Description Language
+
+Pliczek XML, który zawierał opis usługi, punktu dostępowego.
+Tam widać jakie klasa ma metody, typy argumentów, co zwracają, jakie wykorzystuje protokoły.
+Nie ma tam implementacji, zaledwie interfejs
+
+Dzięki takim informacjom klient jest w stanie wykorzystać oferowaną funkcjonalność usługi.
+WSDL nie zawiera informacji o usługodawcy! - tym zajmuje się UDDI
+
+Ma przygotowany szereg elementów/tagów które umieszczamy wewnątrz roota -> <definitions>
+
+
+2.3 Kolejną technologią usług webowych jest SOAP  (TU JEST COS CHAOTYCZNIE - przeformatowac)
+z ang. Single Object Access Protocol, czyli protokół zdalnego dostępu do obiektów.
+
+Niezależny od języka programowania, platformy i formy transportu!
+Pozwala on łączyć się zdalnie do usług i wywoływać na nich metody. 
+Przez HTTP/HTTPS może on być przepuszczany przez Firewalle
+
+- oparty o HTTP/S, SMTP, ale wspiera w zasadzie dowolny (bo jest niezależny)
+- wspiera z definicji tylko XML, ale można przemycić wewnątrz JSON
+- stanowy lub bezstanowy (np. może wykorzystywać cookies, ale z http wynika bezstanowość)
+- puszczany przez akcję POST
+- ma boilerplate, narzut XML, nagłówków -> jest cięższy i wolniejszy
+- przez WSDL jest ustandaryzowany i przejrzysty, ułożony
+- niecachowalny przez POST i bezstanowość HTTP
+- wbudowana obsługa błedów
+
+Składa się z elementów:
+- envelope - wskazuje że ten XML jest wiadomością SOAP (wymagany)
+- header - metadane o użytkowniku, szyfrowaniu, sesji (opcjonalny)
+- body - treść wiadomości (wymagany)
+- fault - błędy przy przetwarzaniu wiadomości (opcjonalny)
+
+Ze względu na narzut tagów XML, nagłówków payload staje się duży i przetwarzanie wiadomości
+jest dłuższe niż się oczekuje.
 
 
 
+2.4 REST jest standardem architektonicznym
+z ang. REpresentational State Transfer
+
+To styl architektoniczny dla usług webowych
+
+- oparty o HTTP/S
+- wspiera format JSON (domyślny) i XML
+- bezstanowy, komunikacja nie ma konteksu
+- dostęp przez URL np. example.com/users/1
+- wspiera akcje GET, PUT, POST, DELETE
+- jest lekki prosty w uzytkowaniu
+- mechanizm GET jest cachowalny
+- nieustandaryzowany tak jak SOAP, łatwiej w nim o chaos
+- jeżeli jest połączony z HATEOAS jest bardzo czytelny (zawiera linki do zasobów w odpowiedzi)
+
+{
+"id": 1,
+"result": "Anna",
+"links": [
+	{
+		"href": "/users/1/surname",
+		"rel": "surname"
+	},
+	{
+		"href": "/users/1/age",
+		"rel": "age"
+	}
+	]
+}
+
+
+
+3. Jak integrować ze sobą usługi jeżeli mamy ich mnóstwo
+
+Jest to całkiem problematyczne kiedy dysponujemy usługami, które zaczynają mieć od siebie zależności,
+duplikują zadania i implementują adaptery każdy z każdym.
+To daje problem skalowalności, trudnośći w utrzymania i we wprowadzaniu przyszłych zmian.
+
+Dlatego często wprowadza się warstwę pośredniczącą i przebudowuje się serwisy tak, by były
+jak najbardziej od siebie odseparowane i rozmawiały tylko z tą warstwą pośredniczącą.
+Chodzi o to aby zrzucić odpowiedzialność za tłumaczenie komunikacji między usługami na jeden komponent.
+
+Przykładem takiego rozwiązania jest ESB (Enterprise Network Bus), czyli szyna która łączy ze sobą
+wszystkie usługi webowe.
+
+(zamiast każdy z każdym - mnostwo kombinacji, to wszystcy gadaja do jednego - gwiazda)
+W ESB mamy jeden centralny element (w zasadzie to mozna ich miec wiecej, zeby zapewnic redundancję)
+Wszystko jest prowadzone przez niego.
+Na każdym styku usług znajduje się adapter, który przeprowadza konwersję danych w różnych protokołach
+na wspólne medium.
+
+Wszystkie tak połączone usługi są w jednym katalogu, co ułatwia ich znajdowanie.
+
+Zalety:
+- uniezależniamy usługi od sposobu komunikacji i zgodności interfejsów
+- usługi nie muszą się na wzajem znać (swojej lokalizacji) bo wystarczy, że ESB o tym wie
+- łatwiejsze utrzymanie spójności
+
+
+Przykładem jest Mule ESB, któe ma nawet edytor graficzny do łączenia usług
 
 
 
