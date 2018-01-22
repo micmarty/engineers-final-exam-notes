@@ -1,0 +1,87 @@
+﻿4 - Porównanie sieci LAN i WAN
+
+--- Kryteria ---
+1. Definicja
+2. Prędkość transmisji + ciekawostka
+3. Kosztowność rozwiązania i skalowalność
+4. Łącza (wykorzystywane medium, dzierżawa, punkt-punkt
+5. Opóźnienia (jitter, duże stałe obciążenie)
+6. Błędy
+7. Protokoły i technologie
+--- -------- ---
+
+1.
+LAN (Local Area Network) to sieć o małym zasięgu, łączy urządzenia w domach, biurach.
+Zazwyczaj obejmuje od kilku do kilkuset stacji.
+
+Urządzenia połączone są jednym wspólnym medium w sposób, ale w większych sieciach stosuje się
+ich nadmiar aby zapewnić lepszą przepustowość i dostępność w razie awarii (QoS). 
+Dodatkowo stosuje się wtedy mnogość urządzeń takich jak: przełączniki, routery, mosty, koncentratory. 
+Tak duże sieci można wydzielać fizycznie kablami lub logicznie przez VLANy.
+
+Małe sieci takie jak dom zazwyczaj ograniczają się do routera dostawcy internetu, który
+transmituje sygnał radiowy Wi-Fi do urządzeń końcowych.
+
+
+
+2. 
+Prędkość typowo w granicach 1Gbps. Komercyjnie dla dużych graczy w zasięgu jest 400Gbps.
+W grudiu 2017 zatwierdzono standard IEEE 802.3bs który obejmuje 200 i 400 Gbps.
+Google i Facebook zaznaczały, że potrzebują terabitowego standardu ale podobno bez zmiany technologii
+się nie obejdzie.
+
+3. Niskie koszty, utrzymanie jest zazwyczaj wykonalne przez 1 do kilku osób.
+Ze względu na topologie, można w miarę łątwo skalować.
+
+4.
+Wykorzystuje zazwyczaj skrętki, radiowo WiF, od jakiegoś czasu w Polsce można mieć łącza światłowodowe
+
+Dodatkowo (poza unicastem) umożliwia multicastowanie (kopiowanie) i broadcastowanie pakietów
+(niepowołani powinni ignorować transmisję).
+
+5.
+Zazwyczaj stałe, niskie opóźnienia (< 1 ms)
+
+6. 
+Niskie prawdopodobieństwo popełnienia błędu, niezawodność.
+
+7. 
+Protokoły/standardy:
+- Ethernet 802.3 (CSMA/CA i CD)
+- Token Bus 802.4 i Token Ring 802.5
+- FDDI (Fiber Distributed Data Interface)
+- WiFi 802.11
+------
+1.
+WAN (Wide Area Network) to rozgległa sieć, która łączy ze sobą urządzenia na dużych obszarach
+(kraje, kontynenty) - setki i tysiące kilometrów. Spina sieci lokalne i metropolitalne.
+
+2.
+Prędkość na przy stykach sieci średnio od 21 - 100 Mbps (2016)
+Teoretyczne przepustowości sięgają 400Gbit Ethernet.
+Najświeższe osiągnięcia z College of London pokazały prędkość transferu na poziomie 1.125 Tbps
+Technologia ta pozwala czterokrotnie zwiększyć przepustowość w kablach optycznych, ale to nie 
+jest perspektywa najbliższych lat :)
+
+3.
+Wysoki koszt budowy i utrzymywania. Cieżko to skalować
+
+4.
+Wykorzystuje łącza światłowodowe, radiowe np. 4G LTE i satelitarne, telefoniczne
+Zazwyczaj są wynajmowane/dzierżawione od dostawców
+Łączone punkt-punkt -> czyli konieczność nawiązania połączenia przez rozpoczęciem transmisji
+
+5.
+Mogą występowac duże opóźnienia propagacyjne, jitter (zmienność opóźnienia)
+Opóźnienia rzędu setek milisekund (np. w satelitarnej)
+Duże zagęszczenie danych
+
+6.
+Dużo wyższe prawdopodobieństwo błędów w transmisji
+
+7. Protokoły:
+- HDCL (własnościowy Cisco)
+- Frame Relay
+- X.25
+- ISDN (Integrated Services Digital Network)
+- PPP (Point-to-Point Protocol)
