@@ -1,0 +1,67 @@
+﻿P10 - Porównanie standardowych platform programowania w internecie
+
+
+1. (Najpierw trzeba opowiedzieć czym są te platformy)
+Obecnie na rynku jest mnóstwo różnych rozwiązań. Aplikacje webowe można tworzyć
+w dosłownie każdym języku mając w zanadrzu po kilka frameworków do wyboru.
+
+Platformy programowania to są po prostu frameworki.
+Są one połączeniem narzuconej struktury aplikacji/mechanizmów oraz bibliotek.
+
+Frameworki narzucają domyślne zachowania przez co deweloper nie ma całkowitej władzy
+nad działaniem wytworzonej aplikacji.
+
+Większość z nich opiera się na wzorcu MVC -> Model View Controller
+(nie ma sensu opowiadać od razu, bo nie tego dotyczy pytanie)
+
+Przykładami takich platform są:
+- Ruby: Rails, Sinatra
+- Python: Django, Flask, CherryPy
+- Java: Spring, JEE
+- .NET: ASP.NET
+- PHP: Laravel, Symfony
+- JavaScript: AngularJS, VueJS
+
+Na zajęciach korzystaliśmy z JEE i ASP .NET Core 2.0, ja miałem okazję pracować kilkukrotnie
+z Ruby on Rails.
+
+Wbrew pozorom miały ze sobą dużo wspólnego:
+(zadania frameworków)
+- pozwalały generować widoki z dynamicznymi danymi (podstawianie zmiennych)
+- tworzyć szablony widoków oparte o partiale, flashe
+- dostarczały komponenty encyjne (ORM) do abstrakcji na bazie danych
+- posiadały biblioteki do autoryzacji (JAAS, Devise)
+- pozwalały na lokalizację treści
+- posiadają duże wsparcie społeczności, dokumentację, IDE i narzędzia
+- nic nie kosztują :)
+
+Wraz z frameworkami dostarczane są serwery aplikacji, które odpowiadają za 
+zestaw bibliotek i konfiguracji potrzebnuch do uruchomienia aplikacji.
+
+Przykładem jest GlassFish dostarczany razem z Oraclową Javą, Puma z Railsami, albo 
+IIS dla dotneta, który jest w Windowsie.
+
+2. Trendy
+
+Bardzo popularne stało się tworzenie aplikacji w JS frameworkach.
+Prym wiedzie AngularJS, stworzony przez Google, który wykonuje się całkowicie po stronie klienta.
+
+Pobiera potrzebe dane JSONami z serwera, serwer może byc dowolny - często wybiera się Node.js dla
+spójności językowej (w małych projektach).
+
+Pisze się w TypeScripcie, który kompiluje się do JavaScript (Microsoftowa technologia).
+- daje statyczne typy
+- klasy, przestrzenie nazw
+- jest dużo bardziej czytelny, mniej chaotyczny
+
+Bardzo dynamicznie się zmienia, co bywa udręką programistów + ma problemy z dokumentacją.
+
+
+Świeżą rzeczą jest dotnet core 2.0 (2017)
+Oczywiście tworzony przez microsoft od niemalże podstaw.
+Jest wieloplatformowy (Win, Mac, Linux). 
+
+
+
+
+
