@@ -1,0 +1,104 @@
+﻿P8 - Rola i zadania komponentów encyjnych
+
+1. Komponenty encyjne służą do reprezentacji encji w modelu obiektowym.
+Czyli robimy odzwierciedlenie tabel na encje oraz atrybutów (kolumn) na pola.
+
+(zbiory encji -> klasy, encja -> obiekt, atrybut -> pole
+
+Komponenty encyjne implementują mechanizmy ORM (Object-relational mapping).
+Tłumaczą kod w np. Javie, Rubym na zapytania SQL. Klasy encyjne są klasami POJO (Plain Old Java Object)
+
+Ich rolą jest uproszczenie programistom operacji na bazach danych poprzez wprowadzenie warstwy abstrakcji.
+Sprawiają one również, że możemy wykorzystywać różne silnika baz danych (MySQL, PostgreSQL), 
+zachowując to samo zachowanie logiki biznesowej aplikacji.
+Oczywiście w przypadku zaawansowanych zapytań, jakiś optymalizacji musimy radzić sobie sami.
+
+Przykłady:
+- JPA (Java Persistence API) - Hibernate, EclipseLink
+- .NET - LINQ, Entity Framework, NHibernate
+- Ruby - ActiveRecord
+
+Dla JPA, ActiveRecord nie ma dużej różnicy jakiego silnika używamy 
+
+Zalety:
++ wspomaga produktywność
++ ułatwia utrzymanie kodu źródłowego
++ podpowiadanie składni w IDE
++ uniezależnia od silnika bazy danych
++ wbudowane mechanizmy cachowania, współbieżności, transakcji, bezpieczeństwa
+
+Wady:
+- uzależnia nas od kolejnej biblioteki
+- ukrywa szczegóły, które czasem mogą mieć krytyczne znaczenie
+- nie jest w pełni zoptymalizowane, może wymagać godzin kombinowania i obchodzenia
+
+
+2. Mechanizmy w ORM
+
+2.1 Pesymistyczne i optymistyczne blokowanie
+
+(pesimistic locking)
+W tym pierwszym chodzi o to, że dopóki wykonujemy jakieś operacje na encji, to nie możemy jej zapisać.
+Transakcja zostaje odblokowana dopiero wtedy gdy zacommitujemy lub rollbackujemy już istniejącą.
+
+(optimistic locking)
+W tym drugim opieramy się na strategi wersjonowania rekordów (timestampy, sumy kontrolne, hashCode)
+aby zapobiec brudnym odczytom (czyli sytuacji gdzie stan encji zmienił się za naszymi plecami jak
+już go odczytaliśmy). 
+Kiedy wersja jest inna anulujemy transakcję wyjątkiem OptimisticLockException.
+Ale z góry zakładaliśmy, że nikt nic nie zmieniał po naszym odczycie i przystępowaliśmy do zmian. 
+Zazwyczaj korzystamy z niego kiedy nie spodziewamy się dużej ilości kolizji.
+
+
+2.2 Lazy loading
+ładowanie danych tylko wtedy gdy się po raz pierwszy do nich odwołamy.
+Robi to za nas proxy z klasy encyjnej.
+
+2.3 Entity Manager
+Klasa która wykonuje i zarządza wszystkimi operacjami na bazie danych
+Klasa encja jest zarządzana i nie musimy zapisywać jako save, wystarczy setPrice i on
+wykryje zmiany, a potem zapisze.
+
+2.4
+
+Zapytania natywne albo pośrednie (JQPL i HQL)
+
+Pozwalają optymalizować i wyręczać JPA, jeśli robi coś nieprawidłowo.
+Tworzymy zapytania jako stringi, którym można nadać odrobinę elastyczności wstawiając zmienne.
+
+JPQL i HQL są bardzo podobne. Każde zapytanie JQPL jest prawidłowym zapytaniem HQL
+HQL jest rozszerzeniem od Hibernate.
+
+
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ciekawostki:
+
+Czasem moze pojawic sie problem N+1 (lista userow, kazdy ma liste adresow) - trzeba uzyc join fetch usera i jego adresy
+
+Cachuje dane, trzyma w pamieci, mozna to flushowac, clearować. 
+Nadal mozna korzystac z HQL, czy JPQL - ale nadal jestr niebezpieczenstwo Injection!
+musimy uzywac setParameter a nie jako sam string
+
+
+
+Mozemy tez korzystac z natywnych zapytań SQL (native queries) - przydatne w specyficznych usecasach
