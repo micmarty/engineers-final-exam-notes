@@ -1,0 +1,81 @@
+﻿7 - Paradygmaty programowania obiektowego
+
+Na programowanie obiektowe składają się 4 mechanizmy/reguły
+- abstrakcja
+- dziedziczenie
+- polimorfizm
+- hermetyzacja
+
+--- 1. ABSTRAKCJA ----------------------------------------------------------------------------------
+Pierwszy z nich (abstrakcja) nawiązuje do konceptu klasy, czyli czegoś co wprost nie istnieje,
+ale uogólnia jakiś zbiór cechy. Opakowuje ona zbiór jakiś typów i zachowań, które w takim połączeniu
+nadają jej jakiś sens.
+
+Przykładowo:
+Z perspektywy prowadzenia biznesu i rozliczania umów uogólniamy pracownika do takich cech jak:
+Imię, Nazwisko, PESEL i nie musi nas interesować to jakie ma hobby i z ilu atomów się składa.
+Dobieramy reprezentację do naszych potrzeb, zawierając tylko kluczowe dla programisty elementy.
+
+Analogia świata rzeczywistego:
+Kierowca pojazdu nie musi wiedzieć jak jest zbudowany każdy element w silniku, aby móc skutecznie
+go prowadzić, bo wystarczy mu do tego ogólne pojęcie.
+
+--- 2. DZIEDZICZENIE -------------------------------------------------------------------------------
+
+Drugi paradygmat, czyli dziedziczenie pozwala na tworzenie hierarchi między klasami.
+To daje nam możliwość lepszego, w zasadzie bardziej intuicyjnego odzwierciedlania 
+rzeczywistości
+
+Na przykład:
+Mechanik i Sprzątaczka są Pracownikami, Kwadrat i trójkąt są wielokątami, a wilk i owca zwierzętami.
+Po prostu posiadają one jakieś wspólne cechy, któe można wyodrębnić.
+
+--- 3. POLIMORFIZM ----------------------------------------------------------------------------------
+
+Trzeci, polimorfizm mocno wiąże się z dziedziczeniem. Inaczej można go nazywać wielopostaciowością. 
+Polega na tym, że wiele rodzajów obiektów może być traktowane jako ten sam typ.
+
+Odwołując się do poprzedniego przykładu:
+Jeżeli chcemy zwiększyć zarobki wszystkim pracownikom, to nie interesuje nas jakiej konkretnej klasy
+są ich obiekty, wystarczające jest to że każdy z nich jest Pracownikiem i ma pole dotyczące pensji.
+
+
+Polimorfizm wiąże się z jeszcze jednym aspektem - pewne zachowania mogą być różne w zależności
+od typu obiektu z którym współpracujemy
+
+Przykładem tego może być:
+Znak dodawania oznacza w kontekście liczb całkowitych co innego niż w kontekście zmiennoprzecinkowych,
+czy list. 
+
+Np. w Pythonie moduł pathlib pozwala łączyć ścieżki systemowe przy pomocy znaku dzielenia.
+Ma to duży sens w tym kontekście.
+
+
+--- 4. HERMETYZACJA ---------------------------------------------------------------------------------
+Ostatni paradygmat - hermetyzacja bądź enkapsulacja oznacza, że możemy ukrywać dostęp
+do pól i metod, tak by nie można było zmieniać stanu obiektu z zewnątrz.
+
+W zależności od języka możemy pola podzielić dostępy na :
+- prywatne
+- chronione
+- publiczne.
+
+Chronione - po ang. dla klasy macierzystej protected oznacza, że klasa dziedzicząca ma dostęp do pełnej
+		jej zawartości, ale dla kogoś z zewnątrz jej elementy są traktowane jako prywatne
+
+
+
+
+
+
+--------------------
+Jeśli zapytają czym jest paradygmat obiektowy?
+
+Wywodzi się z lat 60, konceptem była Simula, ale to Smalltalk dopracował koncepcję.
+C++ zmiksował popularny wtedy C z obiektowością. 
+
+Koncept polega na tym by za pomocą obiektów łączyć ze sobą jakiś złożony stan i zachowanie.
+
+-------------------
+Agregacja to łączenie kilku obiektów w jeden obiekt, np. Kot moze mieć pole typu Wąs, Ogon, które nie są
+typami prostymi.
