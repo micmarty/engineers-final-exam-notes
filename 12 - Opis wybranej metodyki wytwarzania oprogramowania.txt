@@ -1,0 +1,69 @@
+﻿12 - Opis wybranej metodyki wytwarzania oprogramowania
+https://www.youtube.com/watch?v=CD0y-aU1sXo
+
+Microsoft xbox one jej uzywal
+
+Kanban
+toyota, limit work in progress WIP, ciagły nie ma sprintow, system ciągniony (pull)
+sterowany jest bezpośrednio przez składane przez odbiorcę zamówienie, a nie ogólny, arbitralny plan produkcji. 
+
+nie interesuje nas tempo, ale plynnosc, brak przestojow i kumulacji
+zauwazono w duzych oranizacjach, że zwiększenie ciśnienia ponad miarę może doprowadzić do zjawiska niezgodnego z intuicją – spadku przepustowości
+
+todo, in progreww, done
+
+backblog, breakdown (inprogress,done), WIP(inprogress,done), Validate
+backlog moze zawierac duze zadania, a potem w breakdown je rozbijamy
+
+Done rules, czyli kiedy mozna powiedziec ze praca mogla zostac wykonana
+np. minimalny czas trzeba spedzic 1h, albo przejsc testy albo code review
+
+
+ilosc kolumn nie ma znaczenia, ale kazda powinna dzielic sie na dwie: w trakcie i zrobione
+
+
+
+
+czasem sa silver bullet, ktore maja priorytet i wsyzscy sie na nich skupiaja
+nadprodukcja jest marnotrastwem
+kanban nie sluzy tylko do wizualiacji i organizacji ale do wykrywania bottleneckow, slablosci
+albo backlog(todo), developement -> WIP and done, Testing -> wip and done, deployment
+
+In computer programming and software engineering, the ninety-ninety rule is a humorous aphorism that states:
+
+    The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.
+
+
+
+
+reguly:
+- (odbiorca albo dostawca )przetwarza dokladnie tyle elementów ile jest na karcie kanban
+- zaden element nie jest wytwarzany ani przekazywany miedzy stanowiskami bez karty kanban
+- karta jest nieodłącznym elementem kazdego wytworzonego produktu w ramach systemu
+- stop the line jesli jest za duzo problemow
+- na kazdym etapie obowiazuja limity (fizyczna ilosc kart kanban) - obowiazuja obie podkolumny inprogress i DONE!!!
+
+Kanban jest techniką pozwalającą identyfikować niewydolności systemu i przy odpowiedniej kulturze 
+użycia sprawia, że organizacja bardziej świadomie (np. poprzez analizę statystyczną) podchodzi do
+ problemu wąskich gardeł w procesie produkcyjnym i poświęca więcej uwagi usuwaniu rzeczywistych 
+powodów ich istnienia. Tak rozumiany kanban jest narzędziem służącym ciągłemu doskonaleniu procesu 
+produkcji i zwiększaniu efektywności całej organizacji.
+
+
+Niedoskonałości są zwykle kategoryzowane przy użyciu japońskich terminów:
+
+mura — brak regularności (czas przebywania produktu w systemie jest różny, zachodzące procesy cechuje podejście ad hoc, organizacja pogrążona jest w chaosie); najpierw należy ustanowić system “ciągniony”, uzyskać ciągły przepływ, dopiero w kolejnych krokach skupić się na zwiększaniu jego efektywności
+muri — przeładowanie systemu (procesu, osób); próba wtłoczenia do systemu większej ilości pracy niż jest on w stanie przyjąć
+muda — tradycyjne rozumiane marnotrawstwo (klasyczne 7 źródeł marnotrawstwa skategoryzowane i opisane przez Taichi Ohno).
+
+kanban nie musi byc iteracyjny, jest przezroczysty w zasadzie
+
+czasami laczy sie go ze sccrumem i to jest scrum-ban
+warto stosowac kanbana na calym systemie wytwarzania a nie tylko do developmentu oprogramowania
+(od marketingu po dystrybucje)
+
+mozna robic daily standup ale to nie jest przymus
+nie boimy sie dodawania do backlogu w trakcie wytwarzania, na daily mozna jes ukladac w kolejnosci
+taki troche insertion sort
+zeby priorytezowac albo silverbulletowac, zazwyczaj operacje na tablicy wykonuje jedna osoba
+
