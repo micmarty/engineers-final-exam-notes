@@ -1,0 +1,232 @@
+﻿P2 - Korzyści stosowania i kategorie wzorów projektowych
+
+1. Wzorce projektowe
+
+Sprawdzony w praktyce schemat rozwiązywania problemów, które często pojawiają się przy
+projektowaniu i implementacji programów. Wzorzec nie mówi wprost jak rozwiązać problem, tylko
+jest opisem, który trzeba samemu dostosować do naszych warunków.
+
+Najpowszechniejszym jest MVC, występuje w prawie każdym frameworku webowym.d
+Oczywiście wzorce mają swoje określone zastosowania i nie jest powiedziane, że zawsze będzie
+pasował do naszego problemu. Każdy z nich niesie ze sobą nie tylko korzyści, ale też wady.
+
+(Ciekawostka:
+genezą powstania większości obecnie popularnych wzorców jest książka od wzorcach autorstwa 
+Gang czworga(Gang of Four), która powstałą w 1994 roku.)
+
+2. Korzyści
+
+- Dużo większa czytelność kodu i intencji innych programistów. 
+Kiedy widzimy charakterysytyczne metody, klasy to dużo łatwiej jest zrozumieć co się dzieje, bo
+wzorców jest skończona ilość w przeciwieństwie do pomysłów ludzi, którzy ich nie używają.
+
+- Uproszczony i przyspieszony proces wytwarzania oprogramowania, bo nie musimy wynajdować koła
+na nowo.
+
+- Są przezroczyste dla języków programowania, więc w większości mamy pewną swobodę.
+
+- Możemy aplikować je w różnych projektach, przenosić schemat
+
+- Są dobrze udokumentowane, mnóstwo zasobów i przykładów w dowolnym obiektowym języku programowania
+
+
+
+3. Kategorie
+(TODO zapoznać się ze wzorcami, odświeżyć wiedzę
+https://www.youtube.com/watch?v=EWDmWbJ4wRA)
+
+3.1 Wytwórcze (creational) czasami zwane kreacyjnymi.
+-------------------------------------------------------------------------------------------------------
+Ich przeznaczeniem jest tworzenie instancji klas, czyli obiektów.
+Upraszczają pracę kiedy mamy tych klas dużo i chcemy w jakiś 
+uporządkowany i elastyczny sposób tworzyć obiekty.
+
+Programista nie musi martwić się o to jakie argumenty potrzebują konstruktory, jakiej konkretnej klasy 
+musi użyć, albo w jakiej kolejności tworzyć obiekty, aby funkcjonowały ze sobą razem.
+
+Nie musimy wtedy na sztywno wstawiac w kodzie instrukcji warunkowych, duplikować mnóstwo kodu.
+Osoby, które nie chcą rozwijać klas, ale tylko korzystać z ich obiektów mają ułatwione zadanie.
+
+Podsumowując, potrzebujemy ich kiedy:
+- obiekty są jakoś od siebie zależne i istotna jest kolejność tworzenia i łączenia ich ze sobą
+- chcemy uprościć instancjonowanie, ukrywając szczegóły
+- chcemy aby dobór obiektów był automatyczny w runtime programu
+-------------------------------------------------------------------------------------------------------
+
+Przykłady (https://refactoring.guru/design-patterns/creational-patterns):
+- Fabryka, Abstrakcyjna fabryka (albo metoda wytwórcza)
+- Singleton
+- Budowniczy (Builder)
+
+Fabryka - TODO
+
+Singleton - sprawia, że możemy utworzyć tylko jeden obiekt danej klasy i jest on globalny.
+	Implementuje się go przez publiczną, statyczną metodę klasy, która sprawdza czy już nie istnieje
+	obiekt, jeżeli nie to używa prywatnego konstruktora!
+
+Budowniczy - automatyzuje proces tworzenia zależnych od siebie obiektów. Jeżeli wymagają one kilku 
+	skomplikowanych, albo długich kroków zanim powstanie odpowiednia instancja to wrapujemy
+	to w klasie budowniczego, który zrobi to za nas. Wtedy zaoszczędzamy hardcodowania długich, 
+	ręcznych sekwencji i dobierania parametrów
+
+
+3.2 Strukturalne (structural)
+-------------------------------------------------------------------------------------------------------
+Są przydatne kiedy chcemy tworzyć połączenia obiektów w jakieś zależności albo hierarchię.
+
+-------------------------------------------------------------------------------------------------------
+Przykłady:
+- Adapter
+- Fasada (Facade)
+- Proxy (Pełnomocnik)
+
+(za dużo przykładów)
+- Kompozyt (Composite)
+- Dekorator (Decorator)
+- Pyłek (Flyweight)
+- Most (Bridge)
+
+Adapter - daje możliwość komunikacji klas między sobą, jakiś wspólny interfejs, jest pośrednikiem.
+
+Fasada - upraszcza dostęp do skomplikowanych klas, podejmuje decyzje zamiast użytkownika.
+	Użytkownik nie musi się martwić jak coś działa w środku.
+	
+	Przykład:
+	mp4 = convertor.convert("youtubevideo.ogg", "mp4") -> 
+		klasa fasady sama wie jakiej użyć klasy do konwersji na MP4, jakie ustawić próbkowanie,
+		gdzie zapisać plik na podstawie tych prostych danych wejściowych
+	
+
+Proxy - opakowuje dostęp do jakiejś klasy. 
+
+	Przykład: 
+	Istnieje klasa która pożera dużo zasobów i wymaga uprawnień a nie chcemy pozwolić na zbyt duże 
+	obciążenie i użycie przez niepowołane "coś", wtedy proxy zadecyduje czy możemy, 
+	albo przesunie w czasie tworzenie jej instancji.
+
+	Innym przykładem jest łączenie się do zdalnego obiektu np. przez RPC, wtedy to proxy
+	dba od zainicjalizowanie połączenia i ewentualne zakończenie
+
+	
+3.3 Behawioralne (behavioral), czasami zwane czynnościowymi albo operacyjnymi
+-------------------------------------------------------------------------------------------------------
+Są od wewnętrznej logiki klas i interakcji między nimi. Dzięki komunikacji mogą dopasowywać się
+do sytuacji, zmieniać swój stan.
+
+-------------------------------------------------------------------------------------------------------
+Przykłady:
+- Obserwator (Observer)
+- Strategia (Strategy)
+- Polecenie (Command)
+- Łańcuch zależności (Chain of responsibility)
+
+Obserwator - powoduje, że zmiana stanu obiektu obserwowanego powiadamia wszystkie obiekty, które go 
+		obserwują.
+		Pozwala innym zareagować na jakieś wydarzenie. Wymaga stosowania metod:
+		subscribe, notify, update. Obserwowany nie wie kto na niego patrzy.
+
+		Przykład:
+		Rozciągnięcie okna powoduje przeliczenie i zmianę rozmiaru komponentów interfejsu, 
+		które są w środku.
+		
+		
+Strategia - Polega na tym, żeby uelastycznić sposób działania jakiejś klasy, czyli możemy
+		zmieniać podmieniać implementacje metod z zewnątrz nie używając dziedziczenia.
+		Przydaje się kiedy mamy obiekt, który może wykonywać jakąś czynność na dużą ilość sposobów.
+
+		Np. Mamy klasę, która wyszukuje optymalną trasę do celu, ale chcemy mieć możliwość
+		zmiany algorytmu zabezpieczając się na wypadek potrzeby użycia jakiegoś precyzyjniejszego.
+
+		Albo mamy klasę sortującą Sort, która zamiast wewnątrz zawierać wszystkie możliwe implementacje
+		sortowania, używa zachowania z konkretnej klasy np. InsertionSortImpl pod tą samą nazwą
+
+		Czyli oddelegowywujemy odpowiedzialność konkretnej implementacji zachowania na inną klasę.
+
+Polecenie - wykorzystuje w pewnym stopniu wstrzykiwanie zależności. 
+		Opakowuje polecenie, dodatkowo zakłada że można te polecenia wycofywać (undo, redo)
+		Mamy wywołującego/wywołujących (Invoker) i odbiorców (Receiver). Są oni połączeni 
+		interfejsem ICommand, który może mieć konkretną implementację TurnLightOnCommand, który
+		ma przypisanego odbiorcę.
+
+		Metody interfejsu ICommand: execute(), unexecute()
+
+
+
+
+
+-----------------------
+Jeśli zapytają o SOLID
+
+To zbiór dobrych praktyk
+
+S - Single Responsibility principle -> Klasa nie powinna wymagać modyfikacji gdy zmienia się inna.
+
+O - Open Closed principle -> Kod otwarty na rozszerzanie ale zamknięty na modyfikacje.
+				Czyli jeśli chcesz dodać jakąś nową klasę, to nie powinno to wpływać
+				na resztę napisanego kodu.
+
+L - Liskov Substitution principle -> Używanie instancji klas potomnych (które dziedziczą) nie powinno
+					zaburzać poprawności, gdy użyjemy instancji klasy bazowej.
+
+					np. użycie obiektu Robotnika nie powinno niczego zepsuć, gdy
+					wstawimy tam obiekt Pracownika, bo Robotnik jest typu Pracownik
+
+I - Interfac segregation principle -> jeżeli klasa potomna nie potrzebuje kompletnie metod klasy bazowej 
+			to nie powinny one być w relacji ze sobą.
+
+			np. maszyna nie powininna dziedziczyć po pracowniku jeżeli nie ma imienia, nazwiska
+			a używa tylko ID i koszt utrzymania.
+
+D - Dependency Inversion principle -> Metoda wysokopoziomowa nie powinna zależeć od tej niższego 
+			poziomu, którą wywołuje wewnątrz. Powinno używać się jakiegoś wspólnego poziomu
+			abstrakcji, żeby metoda wyższego poziomu mogła dobierać sobie elementy niższego
+			poziomu w zależności od potrzeb, żeby zwiększyć elastyczność, np. w runtime
+
+			W skrócie chodzi o Wstrzykiwanie Zależności (Dependency Injection)
+
+
+----------------------
+Jeśli zapytają o MVC
+
+W skrócie:
+Model Widok Kontroler
+
+Widok porozumiewa się z modelem za pośrednictwem Kontrolera. To on mapuje wydarzenia, żądania
+z widoku na logikę biznesową, którą powinien zrealizować model. Model po wykonaniu akcji, za pośrednictwem
+kontrolera zmienia stan widoku.
+
+Tak na prawdę to łączy on kilka wzorców: Obserwator, Strategia, Kompozyt
+
+Obserwator - np. powiadamianie kontrolera o zmianie w widoku
+Kompozyt - zagnieżdżanie widoków, hierarchia. Renderowanie, podmiana konkretnych fragmentów, czyli partiali
+Strategia - widok się zmienia, a to co zostanie wykonane zależy od konkretnej implementacji kontrolera
+
+
+			
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
