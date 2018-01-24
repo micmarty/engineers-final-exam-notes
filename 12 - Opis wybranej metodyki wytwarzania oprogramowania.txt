@@ -1,7 +1,44 @@
 ﻿12 - Opis wybranej metodyki wytwarzania oprogramowania
+
 https://www.youtube.com/watch?v=CD0y-aU1sXo
 
-Microsoft xbox one jej uzywal
+Kilka miesięcy temu moją uwagę przyciągnęła metodologia Kanban.
+Zazwyczaj wpasowuje się ją w zbiór metodyk zwinnych (Agile movement).
+
+Tak naprawdę Kanban wywodzi się z Japoni lat 50 gdzie stworzono go z myślą o linii produkcyjnej
+marki Toyota. Skutki jej wprowadzenia okazały się tak bardzo korzystne dla firmy, że zainteresowano
+się nią w innych branżach, w tym IT. 
+
+Po co ją stworzono?
+Zauważono, że nadmiary w magazynach powodują same problemy:
+koszt, porządkowanie, presją, transport do i z. 
+Praktycznie zawsze miało to związek z niepłynnością produkcji
+czyli jeden zespół zrobił za dużo i dał to zespołowi, który nie wyrabiał z obróbką.
+Motywacją Kanbana jest wieć usunięcie ciasnych gardeł (bottlenecków) i zapewnienie płynności.
+
+Idea jest taka, aby nigdy nie doprowadzać do:
+- braków
+- opóźnień
+- zapasów, czyli bezczynności
+Stosowało się fizyczne karty, które migrowały między stanowiskami.
+
+Przechodząc do meritum:
+Jest to system ciągniony - pull, czyli taki gdzie zadania są realizowane na żądanie klienta, a nie
+że wytwarzamy coś a potem próbujemy to komuś sprzedać (szukać klienta, albo jego akceptacji).
+Na tym opiera się również Scrum.
+
+Kanban opiera się na wizualizacji i sterowania płynnością działań. 
+Potrzebujemy do niego tablicy z narysowanymi kolumnami i karteczkami. 
+Klumny dobieramy sobie wedle własnych potrzeb, ale te które się da chcemy
+dzielić na 2 podkolumny: w trakcie i zrobione. Przykładowo możemy mieć kolumny:
+
+Backlog, Rozbijanie zadań (Breakdown), Obecne zadania, Walidacja, Dostarczenie (Deployment)
+Nasze zadania, jakieś funkcjonalności które są wyspecyfikowane w wymaganiach dzielimy na mniejsze problemy
+tak by mniej wiecej każde podzadanie zajmowało stałą ilość czasu. 
+
+
+
+
 
 Kanban
 toyota, limit work in progress WIP, ciagły nie ma sprintow, system ciągniony (pull)
@@ -67,3 +104,6 @@ nie boimy sie dodawania do backlogu w trakcie wytwarzania, na daily mozna jes uk
 taki troche insertion sort
 zeby priorytezowac albo silverbulletowac, zazwyczaj operacje na tablicy wykonuje jedna osoba
 
+najwazniejszy nie jest termin zrobienia danej funkcji tylko priorytety zadan.
+Jezeli ktos nagle zada zeby kijowa funkcja nagle stala sie pierwsza w kolejce, to kazemy mu czekac
+bo mozemy miec w trakcie inne rzeczy ktore sa kluczowe
