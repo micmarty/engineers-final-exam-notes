@@ -1,0 +1,288 @@
+﻿13 - Budowa systemów plików w systemach operacyjnych
+
+(Jak ktoś był na sisteme to miał to z Dzubichem na OSach)
+(TL;DR -> moje opracowanie jest zbyt długie, wystarczy zapamiętać podstawy)
+
+0. Wstęp
+1. Jak jest zorganizowana pamięć
+2. Sposoby alokacji
+3. Przykłady systemów plików:
+	2.1 FAT
+	2.2 NTFS
+	2.3 EXT4
+
+
+------------------------------------------------------------------------------------------------------
+
+0. Generalnie mamy mnóstwo różnych systemów plików, ale większość opiera się na tych samych podstawach.
+Najnowszy popularny system plików to APFS od Apple. Natomiast systemem, który mnie osobiście zaciekawił
+jest ZFS (Zettabyte File System), któy stosuje się z powodzeniem w urządzeniach typu NAS.
+
+------------------------------------------------------------------------------------------------------
+
+1. Dyski zapewniją tylko przestrzeń i nie definiują jak ma zostać zapisany plik, dlatego potrzebujemy
+jakiś zasad, które uporządkują nam ich umiejscawianie, dadzą więcej informacji przez metadane itd.
+
+Dyski mają ogromne pojemności, nie ma potrzeby, by operować na tak małych jednostkach jak pojedyncze 
+bajty - jest to wręcz niewskazane bo zmuszałoby procesor do nieustannego czekania na dane. 
+
+Aby nie rozdrabniać się zbyt bardzo, organizuje się je (bajty) w większe jedostki zwane sektorami.
+Ze względu na kompatybilność zazwyczaj wynoszą one 512 bajtów, a system grupuje sektory w bloki, które
+system plików traktuje jako najmniejszą jednostkę pamięci do odczytu lub zapisu.
+To oznacza, że jeśli nasz plik z metadanymi jest mniejszy niż rozmiar bloku, to miejsce jest zmarnowane.
+No ale przy dzisiejszych rozmiarach plików to nie ma czego żałować :)
+Całkiem oczywistym jest, że jeden blok może zawierać tylko jeden plik (albo jego fragment).
+
+Bloki mogą wynosić (czasem nazywa się je klastrami):
+1-128 sektorów => 512B - 64kB
+Ale zazwyczaj to 4kB.
+
+Te bloki numeruje się i mamy wtedy adresy logiczne -> one uniezależniają nas od 
+fizycznych właściwości samego dysku (czyli numerowania sektorami)
+1 adres logiczny (typowo) = 4kB
+
+------------------------------------------------------------------------------------------------------
+
+2. Sposoby alokacji
+
+Praktycznie każdy system plików opiera się na tych podstawowych ideach alokacji. 
+Oczywiście nic nie stoi na przeszkodzie, alby w pewien sposób łączyć te koncepcje.
+
+
+Wyróżniamy (skrótowe opisy) (3 bazowe + 2 wariacje):
+
+- Ciągły (Contiguous) -> 	Plik jest zapisany na sąsiadujących blokach. 
+				Wystarczy znać adres początkowy i ilość bloków jaką zajmuje.
+				Problemy: fragmentacja
+
+- Listowy (Linked) -> 		Każdy poprzedni blok zawiera adres do następnego, czyli jak lista.
+				Lista kończy się pustym wskaźnikiem.
+
+				+ bardzo szybki przy sekwencyjnym dostępie
+
+				+ Nie ma tu problemu fragmentacji, bo części pliku są rozpraszane 
+				po dysku.
+
+				- Jeśli jakiś sektor się uszkodzi, to wtedy cały plik może zostać 
+				niemożliwy do odczytania. (No bo jak zgubi się jakiś wskaźnik w dowolnym
+				miejscu tego łańcucha, to niektóre formaty plików nie będą miały sensu
+				jeśli posiadamy tylko połowę pliku xD) - żeby temu zapobiec FAT
+				zrobił małą wariację na ten temat -> czytaj dalej
+
+				- Część pojemności bloku trzeba poświęcić na przechowywanie wskaźnika 
+				do następnego bloku.
+
+- Indeksowy (Indexed) -> 	Każdy plik ma specjalny blok, który przechowuje wskaźniki do wszystkich 
+				bloków z danymi tego pliku. Trochę jakby każdy plik miał własnego FATa.
+			
+				+ Nie ma fragmentacji
+				- Ale jest narzut bloku indeksowego na każdy plik.
+
+- Wariant listowego - FAT (File Allocation Table) -> wywodzi się z MS-DOS.
+
+------------------------------------------------------------------------------------------------------
+
+3. Przykłady systemów plików:
+
+---------------------------------------
+3.1 FAT - File Allocation Table - Microsoft
+
+Opis:
+
+    Powstało kilka FATów: FAT12, 16, 32 - te liczby oznaczają ilość bitów do zaadresowania bloku,
+czyli 2^32 adresów daje nam 2^32 * 512B / 1024 / 1024 / 1024 / 1024 = 2 TB (TeraBajty)
+				 ^
+		zakładamy mały rozmiar bloku
+							
+    Zamiast przechowywać wskaźniki do bloków w każdym z nich, przechowujemy je w jednym 
+miejscu - tabeli FAT. Każdy blok/klaster był opisywany przez 1 wpis w FAT.
+
+    Pliki i foldery nie mają porządku, zajmują pierwszą wolną lokalizację.
+Jedyne dostępne atrybuty to READONLY, HIDDEN, SYSTEM, ARCHIVAL
+Nazwy mogą mieć max 8 znaków i nie mogą należeć do listy zarezerowanych np. COM, AUX
+Nie rozróżnia wielkości znaków
+Najlepszy dla dysków o rozmiarze poniżej 200MB
+
+Zalety:
++ Takie rozwiązanie przyspiesza odczyt, bo praktycznie od razu znamy łańcuch powiązań całego pliku.
++ Jeśli stracimy jeden wskaźnik, to nie ma tragedi, bo jest kopia w innym miejscu.
+
+Wady:
+- wraz z rozrastaniem tablicy FAT jej efektywność spada
+- nie ma mechanizmu uprawnień
+- rozmiar pojedynczego pliku wynosi 4GB (Próbowaliście kopiować plik z komputera na pendrive > 3.5GB?)
+- tablica FAT musi być regularnie aktualizowana, aby nie doszło do utraty danych - narzut czasowy
+
+
+---------------------------------------
+3.2 NTFS - New Technology File System - Microsoft (http://www.cse.scu.edu/~tschwarz/coen252_07Fall/Lectures/NTFS.html)
+(Strona 443 https://books.google.pl/books?id=3rdCAwAAQBAJ&pg=PA627&lpg=PA627&dq=ntfs+indexed+with+linking&source=bl&ots=d8ruFodysF&sig=fAwPDvBUKK4K9UMdwC8za0WcSvk&hl=pl&sa=X&ved=0ahUKEwj69Y2kqPHYAhUph6YKHY2RD64Q6AEILzAB#v=onepage&q=NTFS&f=false)
+
+
+Wszystkie pliki, katalogi i metadane są opisane w MFT (Master File Table).
+Znajduje się za Boot Sectorem, a za MFT jest miejsce na Dane, na końcu jest kopia MFT, która
+trzyma tylko najważniejsze informacje (16 początkowych wpisów). 
+Jest wariacją/kombinacją alokacji listowej z indeksową.
+
+
+Budowa MFT:
+- pierwsze 16 wpisów opisuje samo MFT, ukryte dane o MFT zaczynają się $ np. $MFT, $LogFile, $BitMap
+- jeden wpis opisuje każdy plik (minimalnie)
+- wpisy zajmują stałe 1kB niezależnie od rozmiaru klastra
+- rozróżnia wielkość liter przez obsługę standardu POSIX (mimo iż podsystem Win32 nie, sprawdźcie...)
+
+Funkcje, bajery:
+- Nazwy plików zakodowane w Unicode UTF-16, max 255 znaków
+- Szyforwanie (EFS - Encrypting File System)
+- Mechanizm księgowania (journaling) - dziennik zmian -> chroni przed błędami zapisu
+- Mechanizm praw dostępu dla grup i użytkowników -> na podstawie ACL (Access Control List)
+- Zapisuje logi transakcji systemu plików, przez co CHKDSK wystarczy, że wycofa te zmiany.
+	(praktycznie daje to możliwość undo i redo np. kopiowania i usuwania plików)
+
+- Wspiera kompresję w locie
+- Wspiera transakcyjność operacji -> albo zapisze wszystko albo nic
+- Wspiera quoty -> Administrator przydziela użytkownikom tylko określoną przestrzeń dyskową
+- Znacznie zwiększono maksymalny rozmiar plików, który teoretycznie, wynosi 2^64 bajtów => 16 eksabajtów
+	w praktyce mniej
+
+
+Ciekawostki:
+
+- Można dodawać do pliku własne atrybuty (Alternative Data Stream), czyli tak na prawdę
+	ukrywamy jakieś dane w wolnej przestrzeni rekordu. Na konkursach CTF czasem się tego
+	używa. Tak można przemycać pożądane informacje, bo standardowe programy nie odczytują
+	takich atrybutów. Tak metoda nie jest zawsze bezpieczna, tylko dla hardcorów co robią
+	projekty na OSy.
+
+- Bloki są adresowane 48bitami co w praktyce nie daje 16 eksabajtów
+- Plik moze trzymac swoje dane juz w rekordzie mft jesli jest wystarczajaco maly (900B)
+- Bardzo duży plik może zajmować kilka wpisów w MFT, a ten pierwszy jest bazowym i wskazuje 
+	na lokalizacje kolejnych wpisów MFT, opisujących ten plik
+	Można to nazwać atrybutami nierezydentnymi (czyli są poza pierwszym wpisem)
+- Pliki ulegają fragmentacji, ale w mniejszym stopniu
+
+---------------------------------------
+
+3.3 Ext4 - Linuxowe rozwiązanie (http://teaching.idallen.com/cst8207/13w/notes/450_file_system.html)
+(https://opensource.com/article/17/5/introduction-ext4-filesystem)
+(https://www.slashroot.in/understanding-file-system-superblock-linux)
+
+Ten system plików opiera się na alokacji indeksowej.
+
+Opis:
+Bloki są grupowane po ok. 32768 (8 * 4096) w tzw. grupę bloków
+			       ^    ^
+                    Some constant | block size in kB
+
+Opis Superbloku:
+
+Superblok znajduje się na początku partycji (primary superblock)
+Ma swoje kopie porozrzucane po dysku (każda grupa bloków zaczyna się superblokiem).
+Ale z czasem zuważono, że zajmuje to zbyt dużo miejsca, więc kopie są tylko przy grupach
+o numerze będącym potęgą 3, 5, 7.
+
+Superblok to metadane systemu plików (coś a'la MFT)
+- liczba bloków w systemie plików
+- liczba wolnych bloków
+- ile inodów na grupę bloków
+- ile bloków tworzy grupę bloków
+- UUID dysku
+- typ np. ext2, ext4
+
+
+
+Opis inodów:
+
+Informacje o pliku przechowywane są w tzw. inodach (i-węzłach).
+Inode nie przechowuje danych pliku, jedynie same lokalizacje bloków, które zawierają jego fragmenty.
+Każdy plik jest opisany przez jeden inode.
+
+Budowa inode:
+- NIE zawiera nazwy pliku
+- zawiera infomacje o typie, uprawnieniach, grupie, timestampy, ilość twardych dowiązań i rozmiar pliku
+- 12 wskaźników na bezpośrednie bloki
+- jeśli to za mało, to 1 na 1-pośredni (on wtedy ma dodatkowe 12 * 12 bezpośrednich)
+- jeśli to znowu za mało, to mamy dodatkowo 1 wskaźnik na 2-pośredni (12 * 12 * 12 inodów ! niedokładne)
+- ostatecznie mamy 3-pośredni wskaźnik (czyli skalujemy pięknie wykładniczo!)
+
+
+Pozostała charakterystyka:
+
+- Dowiązania:
+	- symboliczne -> skrót do orignalnego pliku. Zawiera ścieżkę do oryginału.
+			Jeśli usuniemy oryginał, to dowiązanie staje się niepoprawne.
+
+	- twarde -> jakby kopia pliku, ale bez faktycznego zajęcia dodatkowego miejsca na dysku
+			(po prostu wskazuje na ten sam inode)
+			Tak długo jak na plik wskazuje co najmniej jedno takie dowiązanie, to
+			plik nie zostanie usunięty.
+
+- Przenoszenie plików jest bardzo szybkie, bo nie zmienia położenia pliku fizycznie na dysku, 
+tylko przepina się inode pod nową nazwę.
+
+- Fragmentacja jest praktycznie nieistotna, zbyt wolno postępuje
+- Pliki mogą być przechowywane w ciągłym zbiorze bloków - zwane extentami
+Można przypisać w inodzie do 4 ciągłych obszarów po około 128MB
+
+- Ext4 jest wstecznie kompatybilny z ext2 i ext3
+
+
+-----------------------------------------------------------------------------------
+DODATEK:
+Techniki zarządzania wolnym miejscem:
+
+Do zarządzania wolnym miejscem na dysku mozna używać listy ze wskaźnikami do wolnych bloków, albo
+mapę bitową.
+
+Pierwsza nie marnuje miejsca, nie trzeba przechodzić po całej jeśli znajdziemy wystarczającą ilość miejsca
+ale ma problemy ze znajdowaniem ciągłej przestrzeni.
+
+Mapa bitowa wymaga dodatkowego miejsca
+
+TODO doczytać ciekawostki o APFS i ZFS!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
