@@ -1,109 +1,95 @@
 ﻿12 - Opis wybranej metodyki wytwarzania oprogramowania
 
+Niektóre źródła:
+http://adku.pl/kanban-wydajnosc-it/
 https://www.youtube.com/watch?v=CD0y-aU1sXo
 
-Kilka miesięcy temu moją uwagę przyciągnęła metodologia Kanban.
-Zazwyczaj wpasowuje się ją w zbiór metodyk zwinnych (Agile movement).
 
-Tak naprawdę Kanban wywodzi się z Japoni lat 50 gdzie stworzono go z myślą o linii produkcyjnej
-marki Toyota. Skutki jej wprowadzenia okazały się tak bardzo korzystne dla firmy, że zainteresowano
-się nią w innych branżach, w tym IT. 
-
-Po co ją stworzono?
-Zauważono, że nadmiary w magazynach powodują same problemy:
-koszt, porządkowanie, presją, transport do i z. 
-Praktycznie zawsze miało to związek z niepłynnością produkcji
-czyli jeden zespół zrobił za dużo i dał to zespołowi, który nie wyrabiał z obróbką.
-Motywacją Kanbana jest wieć usunięcie ciasnych gardeł (bottlenecków) i zapewnienie płynności.
-
-Idea jest taka, aby nigdy nie doprowadzać do:
-- braków
-- opóźnień
-- zapasów, czyli bezczynności
-Stosowało się fizyczne karty, które migrowały między stanowiskami.
-
-Przechodząc do meritum:
-Jest to system ciągniony - pull, czyli taki gdzie zadania są realizowane na żądanie klienta, a nie
-że wytwarzamy coś a potem próbujemy to komuś sprzedać (szukać klienta, albo jego akceptacji).
-Na tym opiera się również Scrum.
-
-Kanban opiera się na wizualizacji i sterowania płynnością działań. 
-Potrzebujemy do niego tablicy z narysowanymi kolumnami i karteczkami. 
-Klumny dobieramy sobie wedle własnych potrzeb, ale te które się da chcemy
-dzielić na 2 podkolumny: w trakcie i zrobione. Przykładowo możemy mieć kolumny:
-
-Backlog, Rozbijanie zadań (Breakdown), Obecne zadania, Walidacja, Dostarczenie (Deployment)
-Nasze zadania, jakieś funkcjonalności które są wyspecyfikowane w wymaganiach dzielimy na mniejsze problemy
-tak by mniej wiecej każde podzadanie zajmowało stałą ilość czasu. 
+1. Wstęp i geneza powstania Kanbana
+2. Po co powstał? Jakie problemy miał rozwiązać?
+3. Kanban w IT - przezroczystość, tablica, limity, priorytety na bieżąco (insertion sort)
+4. Adaptacje Kanbana - daily, scrum-ban, jednakowo kompetenty zespół, 
+5. Podsumowani
 
 
+1. Kilka miesięcy temu moją uwagę przyciągnęła metodyka Kanban.
+Robiłem rozeznanie do projektu i postanowiłem dać mu szanse.
+
+Kanban wywodzi się z Japoni lat 50 i kompletnie innej branży.
+Stworzono go z myślą o liniach produkcyjnych koncernu samochodowego marki Toyota.
+Wprowadzenie Kanbana przyniosło tak korzystne skutki, że zainteresowano się nim 
+w innych branżach - w tym IT.
 
 
+2. Po co go stworzono?
+Zauważono, że nadmiary w magazynach przynoszą ogromne straty i przyczyną takiego stanu rzeczy
+była nierównomierna praca zespołów produkcyjnych.
+Czyli jedni zrobili za szybko, wieć żeby się nie nudzić robili dalej, ale zespół następny
+nie potrafił dotrzymać tempa i zaczęły tworzyć się zatory, ciasne gardła (tzw. bottlenecki)
 
-Kanban
-toyota, limit work in progress WIP, ciagły nie ma sprintow, system ciągniony (pull)
-sterowany jest bezpośrednio przez składane przez odbiorcę zamówienie, a nie ogólny, arbitralny plan produkcji. 
+Ideą stojącą za tą metodyką jest niedoprowadzanie do: braków, opóźnień i zapasów.
+W tym celu korzystano z fizycznych kart, które migrowały między stanowiskami.
+Dopiero kiedy następny zespół był gotowy, to poprzedni realizował zamówienia.
+Nazywa się to systemem ciągnionym - scrum również jest pull systemem, bo klient przez product ownera
+dodaje zadania takie jakie potrzebuje.
 
-nie interesuje nas tempo, ale plynnosc, brak przestojow i kumulacji
-zauwazono w duzych oranizacjach, że zwiększenie ciśnienia ponad miarę może doprowadzić do zjawiska niezgodnego z intuicją – spadku przepustowości
+Metodyka ta polega na wizualizacji wszystkim całego procesu i zapobiegania niepłynności.
+(Czasem porównuje się ją do rurociągu).
 
-todo, in progreww, done
+3. Przechodząc do meritum czyli jak to działa w IT:
 
-backblog, breakdown (inprogress,done), WIP(inprogress,done), Validate
-backlog moze zawierac duze zadania, a potem w breakdown je rozbijamy
+Musimy wyposażyć się w jakąś tablicę, którą dzielimy wedle kolumn. Ich ilość i przeznaczenie dobieramy
+sami wedle potrzeb. Przykleja się na niej karteczki z zadaniami.
+Przykładowo mamy kolumny:
 
-Done rules, czyli kiedy mozna powiedziec ze praca mogla zostac wykonana
-np. minimalny czas trzeba spedzic 1h, albo przejsc testy albo code review
+Backlog | Breakdown | Obecne zadania | Walidacja | Dostarczenie
+Zaleca się dzielenie tego co się da na 2 podkolumny: In progress oraz Done
 
+W czym tkwi innowacja? Bo wygląda podobnie do Scruma.
+Sekretem jest ograniczanie ilości karteczek, które mogą znajdować się w poszczególnych kolumnach, etapach.
+Dobiera się je w zależności od najwolniejszego etapu - nie ma sztywnych granic.
+Nie ma żadnych obostrzeń co do konieczności nadawania jakiś story pointów, albo pracochłonności - dowolność.
+Ogólnie nie precyzuje się dat dostarczenia/deadlinów. Mnóstwo zespołów jest w stanie robić wszystko na czas
+bez martwienia się o uciekający czas.
 
-ilosc kolumn nie ma znaczenia, ale kazda powinna dzielic sie na dwie: w trakcie i zrobione
-
-
-
-
-czasem sa silver bullet, ktore maja priorytet i wsyzscy sie na nich skupiaja
-nadprodukcja jest marnotrastwem
-kanban nie sluzy tylko do wizualiacji i organizacji ale do wykrywania bottleneckow, slablosci
-albo backlog(todo), developement -> WIP and done, Testing -> wip and done, deployment
-
-In computer programming and software engineering, the ninety-ninety rule is a humorous aphorism that states:
-
-    The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.
-
-
-
-
-reguly:
-- (odbiorca albo dostawca )przetwarza dokladnie tyle elementów ile jest na karcie kanban
-- zaden element nie jest wytwarzany ani przekazywany miedzy stanowiskami bez karty kanban
-- karta jest nieodłącznym elementem kazdego wytworzonego produktu w ramach systemu
-- stop the line jesli jest za duzo problemow
-- na kazdym etapie obowiazuja limity (fizyczna ilosc kart kanban) - obowiazuja obie podkolumny inprogress i DONE!!!
-
-Kanban jest techniką pozwalającą identyfikować niewydolności systemu i przy odpowiedniej kulturze 
-użycia sprawia, że organizacja bardziej świadomie (np. poprzez analizę statystyczną) podchodzi do
- problemu wąskich gardeł w procesie produkcyjnym i poświęca więcej uwagi usuwaniu rzeczywistych 
-powodów ich istnienia. Tak rozumiany kanban jest narzędziem służącym ciągłemu doskonaleniu procesu 
-produkcji i zwiększaniu efektywności całej organizacji.
+Backlog działa trochę jak taka lista sortowana przez wstawienie (insertion sort).
+Jeśli klient zażąda czegoś, albo okaże się, że coś trzeba poprawić/dodać w trakcie, to bez problemu
+dodajemy na listę i ustawiamy ją w kolejności wedle priorytetu.
+Z nowu: można nadawać karteczkom tzw. silverbullet, czyli priorytet, że cały zespół zajmuje się tylko
+tą jedną rzeczą.
 
 
-Niedoskonałości są zwykle kategoryzowane przy użyciu japońskich terminów:
+4. Adaptacje:
+--- Posłużę się przykładem zespołu od XBOX ONE z Microsoftu ---
 
-mura — brak regularności (czas przebywania produktu w systemie jest różny, zachodzące procesy cechuje podejście ad hoc, organizacja pogrążona jest w chaosie); najpierw należy ustanowić system “ciągniony”, uzyskać ciągły przepływ, dopiero w kolejnych krokach skupić się na zwiększaniu jego efektywności
-muri — przeładowanie systemu (procesu, osób); próba wtłoczenia do systemu większej ilości pracy niż jest on w stanie przyjąć
-muda — tradycyjne rozumiane marnotrawstwo (klasyczne 7 źródeł marnotrawstwa skategoryzowane i opisane przez Taichi Ohno).
+4.1 Często wprowadza się daily standup ze Scruma, aby poukładać karteczki, zaplanować dzień.
+Nie jest to żadnym standardem - nie ma ściśle mastera, ale bywa nim Project manager, albo Agile coach.
 
-kanban nie musi byc iteracyjny, jest przezroczysty w zasadzie
+4.2 Zadaniom czasem nadaje się minimalne warunki, które muszą spełnić, aby przejść do następnego
+etapu (kolumny)
+Przykładowo: przejście unit testów, code review, kilka godzin
 
-czasami laczy sie go ze sccrumem i to jest scrum-ban
-warto stosowac kanbana na calym systemie wytwarzania a nie tylko do developmentu oprogramowania
-(od marketingu po dystrybucje)
+4.3 Menadżerowie projektów lubią przydzielać zadania losowo - "kto pierwszy ten lepszy".
+Takie działanie sprawia, że każdy członek zespołu jest wykwalifikowany i potrafi zastąpić innego.
+To gwaranuje nam, że w razie choroby, zwolnienia itp. zespół jest w stanie dalej pracować.
 
-mozna robic daily standup ale to nie jest przymus
-nie boimy sie dodawania do backlogu w trakcie wytwarzania, na daily mozna jes ukladac w kolejnosci
-taki troche insertion sort
-zeby priorytezowac albo silverbulletowac, zazwyczaj operacje na tablicy wykonuje jedna osoba
+4.4 Na kartkach z zadaniami można wstawiać kreski symbolizujące dni, jak długo „leży” w danej kolumnie.
 
-najwazniejszy nie jest termin zrobienia danej funkcji tylko priorytety zadan.
-Jezeli ktos nagle zada zeby kijowa funkcja nagle stala sie pierwsza w kolejce, to kazemy mu czekac
-bo mozemy miec w trakcie inne rzeczy ktore sa kluczowe
+5. Podsumowanie
+- bardzo elastyczny
+- przezroczysty dla podejścia -> może być iteracyjny lub zdyscyplinowany
+- pozwala zespołowi dopasowywać go do potrzeb
+- nastawiony na wizualizację, komunikację i płynność, bez nadmiarów i braków - Limity WIP (work in progress)
+- zapewnia płynność
+
+Różnice względem scruma:
+- nie ma stałych sprintów, o określonej długości i z niezmiennym zestawem zadań
+- produkt jest gotowy po każdym zrobionym zadaniu, a nie na końcu sprintu
+- nie ma scrum mastera i product ownera wprost, ale może być jakiś coach
+- nastawiony na płynność, a nie na prędkość
+- kanban dopasowuje limity i zasady w trakcie, a nie ze scrum ma wyznaczone standardy (które i tak się łamie)
+
+------------
+TODO Poczytać o Scrumie i RUP, bo mogą zapytać
+
+
