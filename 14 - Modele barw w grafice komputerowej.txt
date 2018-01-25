@@ -1,0 +1,148 @@
+﻿14 - Modele barw w grafice komputerowej
+
+0. Wstęp
+1. RGB 
+2. CMY i CMYK
+3. YUV i YIQ
+4. HSV, HSB, HSL
+5. Modele teoretyczne
+	5.1 CIE XYZ, CIE Lab, CIE LUV
+-------------------------------------------------------------------------------------------------------
+0. Wstęp
+Istnieje kilka podziałów, każdy z modeli ma swoje zastosowania i ograniczenia.
+Nie ma jakiegoś ogólnie najlepszego, bez względu na czynniki i kontekst.
+
+-------------------------------------------------------------------------------------------------------
+1. Model RBG jest najpowszechniejszy, bo stosuje się go praktycznie w każdym elektronicznym urządzeniu
+posiadającym wyświetlacz. 
+
+Do reprezentacji kolorów używa 3 barw podstawowych: R - Czerwonego, G - Zielonego i B - Niebieskiego
+Aby uzyskiwać inne barwy, po prostu nakłada się je na siebie w odpowiednich proporcjach.
+(Takie coś nazywamy modelem addytywnym)
+
+Przyjęło się, że intensywność każdej z barw podstawowych wyraża się w przedziale 0 - 255 lub 0 - 1.
+Przykład: kolor czarny (0, 0, 0), a biały (255, 255, 255)
+
+Model RGB można przedstawić w postaci sześcianu, gdzie krawędzie z jednego wierzchołka reprezentują
+siłę konkretnej barwy. W jednym rogu jest czerń, na przeciw jest biel.
+
+Zastosowania:
+    Wrażenie koloru jest łatwe do uzyskania, wystarczy w bardzo bliskiej odległości od siebie 
+postawić 3 punkty generujące barwy podstawowe i manipulować jedynie ich intensywnościami.
+W wyświetlaczach działa to tak, że za matrycą znajdują się elementy podświetlające, np. lampki LED
+Ludzki wzrok nie jest w stanie postrzegać tak drobnych punktów jako osobne, więc powstaje wrażenie
+jednej barwy. 
+
+O ile w hardwarze radzi sobie dobrze, to ma słabe właściwości użytkowe. Ciężko jest manipulować
+parametrami w poszukiwaniu konkretnego koloru, bo ich wpływ jest nieintuicyjny na wynik dla człowieka.
+
+
+
+-------------------------------------------------------------------------------------------------------
+2. Model CMY i CMYK
+Składa się z 3/4 kolorów: Cyan (Jaskrawy, jasny niebieski), Magenta (różofiolet), Yellow
+Jeżeli występuje K to oznacza czarny (blacK).
+
+Powszechnie wykorzystywany przy wydrukach
+(Ciekawostka: Próbki tych kolorów są nadrukowywane, na klasyczych papierowych gazetach)
+
+Używa się go tam, bo zazwyczaj wydruk robi się na białym papierze, więc nakładając te barwy
+filtruje/odejmuje się z niego poszczególne składowe.
+(Z tego względu jest modelem substraktywnym)
+
+Czarny kolor wprowadzono aby zlikwidować niedoskonałości w uzyskiwaniu tej barwy przez C, M i Y.
+Zamiast koloru czarnego uzyskiwało się zazwyczaj jakiś brąz, a przecież tak nie może być, bo 
+90% ludzi nie potrzebuje kolorów, tylko pięknej kontrastowej czerni.
+(istotnymi czynnikami jest sam papier i jakość farb)
+
+Dodatkowo takie rozwiązanie jest tańsze, bo marnujemy dużo mniej farby -> niższy koszt.
+
+- nie odwzorowuje pełnej palety barw
+- zależny od jakości farb i papieru
++/- nieintuicyjny dla ludzi, ale w sam raz dla maszyn
+
+
+
+-------------------------------------------------------------------------------------------------------
+3. Modele YUV i YIQ (Y CbCr - Luminacja, Chrominacja niebieska i czerwona)
+(YIQ różni się tym, że ma pomarańczowoniebieską i fioletowozieloną chrominacje)
+
+Są one w zasadzie przekształceniami modelu RGB.
+
+Model jest dużo bardziej przyjazny dla ludzi, ponieważ uniezależnia jasność barwy (biel i czerń) 
+od jej bazowego koloru.
+Konsekwencje tego są takie, że możemy zmieniać jasność bez wpływu na barwy.
+
+Zastosowanie :
+Pierwszy był stosowany w telewizjach w systemie PAL, czyli Europa
+Drugi w NTSC, czyli Ameryka. 
+Używano go, gdy trwał okres przejściowy z czarno-białej na kolorową telewizję
+
+
+-------------------------------------------------------------------------------------------------------
+4. HSV, HSL
+
+Też są przekształceniami RGB i są całkiem bliskie postrzeganiu barw przez ludzi, co wpływa na
+ich użyteczność. Popularne wśród grafików, nigdyś wykorzystywane w telewizji.
+
+HSV/L to:
+- Hue (odcień, czyli kolor bazowy, od 0 - 360 stopni)
+- Saturation (nasycenie, czyli od bladego - 0%, po intensywny - 100%)
+- Value/Lightness (jasność, od 0 do 100%)
+
+Wszystkie barwy wywodzą się z koloru białego, a część widma po prostu zostaje wchłaniana, by uzyskać
+konkretny kolor. Takie podejście podobnie jak przy YUV sprawia, że łatwo jest uzyskiwać pożądane
+barwy, grać na odcieniach, przewidywalne efekty.
+
+Przedstawia się je na stożku (HSV), podwójnym stożku (HSL) lub cylindrze (HSV i HSL)
+https://en.wikipedia.org/wiki/File:HSL_color_solid_cylinder_alpha_lowgamma.png
+
+Opis stożka:
+Środek podstawy -> biały
+Wszędzie na około -> cała paleta kolorów
+W kierunku wierzchołka -> ciemniejsza barwa
+
+
+-------------------------------------------------------------------------------------------------------
+5. Modele teoretyczne istnieją dlatego, że te techniczne (wyżej wspomniane) nie potrafią
+odzwierciedlić wszystkich możliwych kolorów.
+
+
+5.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -129,5 +129,6 @@ Przykłady silników baz danych:
 MS SQL Server, Oracle, MySQL, PostgreSQL
 
 
+file:///C:/Users/miczi/AppData/Local/Temp/Temp1_Bd_PG_14_SQL.zip/Bd_PG_14_SQL.pdf
 TODO może będą chcieli znać jakie operacjie/relacje są dostępne w SQL
 TODO zczaić joiny
