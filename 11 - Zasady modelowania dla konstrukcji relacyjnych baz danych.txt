@@ -1,0 +1,133 @@
+﻿11 - Zasady modelowania dla konstrukcji relacyjnych baz danych
+(https://www.ntu.edu.sg/home/ehchua/programming/sql/Relational_Database_Design.html)
+(http://r937.com/relational.html)
+0. Wstęp
+1. Reguły i zasady działania:
+	1.1 Encje
+	1.2 Klucze
+	1.3 Związki (i klucz obcy)
+2. Optymalizacja logiki - normalizacja bazy danych
+
+-------------------------------------------------------------------------------------------------------
+0. Wstęp
+
+Aby zamodelować bazę powinniśmy najpierw rozpocząć jej zaprojektowania.
+Musimy zrozumieć cel jej powstania, do czego ona ma służyć, poprzewidywać
+co może się zmieniać w czasie (nie polegać wprost na implementacji DBMS).
+
+Kiedy już to zrobimy, to można próbować przenieść swoją wizję do narzędzia pozwalającego
+na wygodne wprowadzanie zmian w koncepcji.
+Modelowanie możemy zrobić na diagramie ERD w programach typu CASE (Computer Aided System Engineering) 
+np. Oracle Designer, albo Enterprise Architect. Ten etap nazywa się projektowaniem logicznym.
+
+-------------------------------------------------------------------------------------------------------
+1. Reguły i zasady działania:
+
+1.1 Encje:
+Zazwyczaj zaczyna się od zaprojektowania potrzebnych encji/tabel/relacji (zwał jak zwał).
+Nadajemy im nazwy, dobieramy dla każdej z nich atrybuty/kolumny, które będą przechowywać
+faktyczne dane reprezentujące jeden rekord.
+
+1.2 Klucze:
+Spośród kolumn w tabeli wybiera się klucz główny, który pozwoli nam na jednoznaczną identyfikację
+rekordu. Jeżeli spośród kluczy kandydujących wybierzemy jeden jako główny to jest on kluczem prostym,
+a jeśli kilka, to kluczem złożonym.
+
+W większości przypadków i tak zaleca się użycie klucza sztucznego, czyli ID. 
+Przykładowe zalety:
+
++ pozostaje niezmienny, co zabezpiecza nas w pewien sposób przed utratą integralności 
+(co jeśli tabele są w związku? Jeśli zmieni się klucz główny, który jest złożony 
+np. z imienia, nazwiska, PESELu to wszystkie odwołania do tego klucza są nic nie warte)
+
++ jest szybszy przy operacjach wstawiania (baza sama inkrementuje licznik, nie musi sprawdzać czy 
+komplet kolumn klucza złożonego faktycznie da unikatowy rekord). Oczywiście inne operacje też pewnie
+są lepiej zopytmalizowane - wszystko zależy od DMBS
+
+------------------------------
+Jedna kolumna to klucz główny 			-> klucz prosty
+
+Wiele kolumn  to klucz główny 			-> klucz złożony
+
+Kolumna, która potencjalnie będzie miała  	-> klucz kandydujący
+unikatowe wartości i może stać 
+się kluczem głównym 
+------------------------------
+
+1.3 Związki:
+Potem łączy się tabele w związki (czasami zwane asocjacjami). 
+Określa się ich liczebność, opcjonalność/obowiązkowość i ich stopień + znaczenie.
+Np. Związek łączący Pracownika z Kontraktem może nazywać się: "realizuje samodzielnie zamówienie"
+albo związek Samochodu z Pojazdem: "IS_A"
+
+Bardzo ważne jednak jest dodanie na poziomie implementacji bazy dodatkowej kolumny reprezentującej
+klucz obcy -> czyli taki, który wskazuje na klucz główny w innej tabeli.
+
+Przykłady stopni związków:
+- unarne -> związek tabeli z samą sobą, czyli rekursywna np. Pracownik mający kolumnę Przełożony.
+- binarne -> łączy dwie encje
+- tenarne -> łączy trzy encje np. Pracownik ->* PracownikKontrakt *<- Kontrakt (wiele do wielu)
+- n-arne
+
+-------------------------------------------------------------------------------------------------------
+2. Optymalizacja logiki - normalizacja bazy danych
+
+Po ukończeniu podstawowego projektu musimy koniecznie zweryfikować czy nasz model
+zgadza się z wymaganiami, rozważyć jakiego rodzaju zapytania ma on obsługiwać, starać się
+przewidzieć co w przyszłości może pójść nie tak, co można by uelastycznić, aby łatwiej wprowadzało
+się zmiany.
+
+CUDna Anomalia
+CUD Anomaly (Create, Update, Delete Anomaly) - ogólnie sytuacja polega na tym, że w jednej tabeli
+	mamy nadmiarowe kolumny (np. Produkt z kolumną AdresSklepu i TelDoSklepu)
+	W skrócie redundancję, duplikowane informacje.
+
+	Przykład:
+	1.	Jeżeli będziemy chcieli dodać nowy sklep, to trzeba stworzyć sztucznie produkt,
+	a jeżeli będziemy chcieli zupdatować jakiś sklep, to trzeba zrobić to na wszystkich
+	rekorach w tabeli z Produktami. 
+
+	2. Jeśli przechowujemy zbiór wartości (tablicę) jako kolumny
+	np. kolumny: Sprzedawca1, Sprzedawca2, Sprzedawca3
+	Jesteśmy totalnie uzależnieni od sztywno ustalonej ilośći + nie ma jak tego 
+	sensownie sortować, ani przeszukiwać.
+
+Warto stosować normalizacje, aby nie dopuścić do takich sytuacji.
+Jest kilka poziomów:
+
+1 NF ->	- Tabela musi mieć klucz główny, który w jednoznaczy sposób pozwala rozróżnić od siebie rekordy (że nie ma drugiego o takich samych wartościach w kolumnach)
+	- Każda kolumna powinna być atomowa (czyli nie mamy elementów w stringu po przecinku udając listę)
+	- Nie możemy mieć grupy kolumn reprezentujących podobne informacje, jakiś rzeczywisty obiekt (np. AdresSklepu, TelDoSklepu, DataPowstaniaSklepu)
+	- Kolejność wierszy i kolumn jest nieistotna.
+
+
+2 NF ->  - Oczywiście musi byc najpierw wymagania 1 NF
+	 - Każda kolumna, która nie jest kluczem, powinna mieć sens będąc podpiętą pod ten klucz.
+	Czyli kolumny muszą opisywać tylko to, co powinna zawierać tabela o tej nazwie.
+
+	Przykład: mamy tabelę AgentówSprzedarzowych, to takie kolumny jak AdresBiura, TelDoBiura
+		  są kompletnie niezwiązane z tematyką encji 
+		  -> powinny one trafić	do innej tabeli
+	
+
+3 NF -> - Spełnia warunki 2 NF
+	To jest bardzo ciekawe:
+	- Kolumny muszą bezpośrednio zależeć od klucza głównego, nie mogą być zależne między sobą.
+	
+	Co to oznacza?
+	Ano, że jeżeli mamy kolumny: ID, WymiaryBasenu, ObjętośćBasenu to łamiemy tę regułę.
+	WymiaryBasenu są bezpośrednio zależne od ID, ale ObjętośćBasenu jest zależne od WymiarówBasenu.
+	To sprawia, że jeżeli zmienimy wymiary, to musimy pamiętać o aktualizacji ObjętościBasenu,
+	inaczej stracimy integralność.
+
+
+Do tych normalizacji powinniśmy trzymać się jeszcze pewnych oczywistych reguł:
+- klucze główne nie mogą nigdy być NULL
+- klucze obce muszą wskazywać na istniejące klucze główne
+
+Przykłady silników baz danych:
+MS SQL Server, Oracle, MySQL, PostgreSQL
+
+
+TODO może będą chcieli znać jakie operacjie/relacje są dostępne w SQL
+TODO zczaić joiny
