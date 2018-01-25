@@ -1,0 +1,76 @@
+﻿6 - Rola polityki bezpieczeństwa w sieciach komputerowych
+(https://securitum.pl/baza-wiedzy/przykladowa-polityka-bezpieczenstwa/)
+(https://txwes.edu/media/twu/content-assets/documents/it/Network-Protection-and-Info-Security-Policy.pdf)
+(https://www.youtube.com/channel/UCEBb1b_L6zDS3xTUrIALZOw)
+
+Polityka bezpieczeństwa jest kluczowa dla przyszłych losów firmy (zakładając poważną rozmowę).
+Jest dokumentem, który definiuje założenia i zasady, którch należy przestrzegać, aby nie 
+narazić siebi/firmy na straty finansowe/wizerunkowe.
+
+Czasami można pomylić ją z procedurami bezpieczeństwa (czyli sytuacje krytyczne).
+Te granice nie są do końca ostre, ale procedury dotyczą raczej co robić, gdy już dojdzie
+do tragedii...
+
+Polityka bezpieczeństwa ma zapewnić:
+- poufność komunikacji i przechowywanych infromacji
+- integralność (ochrona przed nieautoryzowaną, niezauważoną ingerencją)
+- wysoką dostępność
+- rozliczalność/niezaprzeczalność operacji (kto, co robił i kiedy)
+
+Popularne zasady:
+1. Kluczowa jest zasada "minimalnych uprawnień" -> user ma najniższy możliwy ich poziom, 
+						by móc wykonywać swoją pracę
+
+2. Poza nią jest jeszcze zasada "wielowarstwowych zabiezpieczeń" -> nie możemy chronić się tylko na jednej
+			płaszczyźnie, bo gdy ona zostanie zwalczona, jesteśmy odkryci.
+
+3. Domyślnie wszystko powinno być raczej zabronione, czyli typ "zamkniętego systemu".
+
+4. Dostęp z zewnątrz firmy powinien odpywać się przy pomocy VPN
+
+5. Zabezpieczanie stacji roboczych
+- sensowne antywirusy z aktualną bazą zagrożeń
+- kontrolowanie aktualizacji przez administratora (Windows 10 you never know, updaty mogą czasem szkodzić)
+- zabezpieczony hasłem, najlepiej dodatkowo zaszyforwany dysk (czasem lepiej stracić jakieś dane, niż ujawnić)
+- automatyczne blokowanie po pewnym czasie bezczynności
+
+6. Polityka haseł:
+- okresowo powinny być zmieniane i spełniać nietrywialne warunki
+- nie mogą być zbyt trudne, bo ludzie zapiszą sobie na kartce albo w jakimś głupim miejscu
+- powinny być poddawane weryfikacji przez typowe tęczowe tablice
+
+7. Monitoring bezpieczeństwa:
+- śledzenie odwiedzanych stron i analiza potencjalnie niebezpiecznego ruchu sieciowego
+- śledzenie uzyskiwanych dostępów/logowań
+- kontrola legalności oprogamowania
+
+9. Edukacja, edukacja, edukacja... i kary finansowe za nieodpowiedzialność xD
+
+6. Dane
+- zakaz przenoszenia danych poufnych na nośnikach poza teren firmy
+- zakaz przynoszenia własnych nośników (np. Stuxnet https://pl.wikipedia.org/wiki/Stuxnet)
+- serwery muszą być odseparowane od sieci klienckich, albo dla gości
+- publiczne gniazdka pozamykane
+
+7. IT - mięso
+- Separacja od sieci LAN (np. z korzystanie ze strefy DMZ)
+	https://www.youtube.com/watch?v=-cDGgAXPGB4
+	https://www.youtube.com/watch?v=dIFKmJ4wufc
+- Używanie spamtrapów i honeypotów, aby móc zablokować niebezpieczne maile/przewidzieć ryzyko
+- Utwardzenie bezpieczeństwa domyślnie oferowanego przez system
+- Okresowe przeprowadzanie testów penetracyjnych (uuu czasochłonne i drogie)
+- Kopie zapasowe z ograniczonym dostępem osobom nieupoważnionym
+- Okresowe testowanie czy kopie działają
+
+Podsumowanie na chłodno:
+    Polityka bezpieczeństwa nie może być przesadzona, bo drastycznie zmniejszy produktywność,
+spowoduje stres, niepotrzebne napięcia, nadmiar czasu poświęconego na szkolenia.
+Trzeba znaleźć balans między bezpieczeństwem, a kosztami jego wprowadzenia i funkcjonowania.
+
+
+TODO
+DDos, Cloudflare
+Firewall
+blokada portów
+jeden firewall to za mało, jeżeli źle skonfigurwowany to rujnuje całą zasłonę
+warto uzywac VLANów zeby podpinac kilka komputerow pod jeden port firewalla
