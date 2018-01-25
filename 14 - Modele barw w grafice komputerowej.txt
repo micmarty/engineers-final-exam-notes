@@ -107,13 +107,42 @@ W kierunku wierzchołka -> ciemniejsza barwa
 5. Modele teoretyczne istnieją dlatego, że te techniczne (wyżej wspomniane) nie potrafią
 odzwierciedlić wszystkich możliwych kolorów.
 
+(to jest jakieś kongo, nie widzę jakiegoś w tym sensu, punktu zaczepienia, żeby łatwo zapamiętać)
 
 5.1
+CIE -> wytwór jakiejś francuskiej komisji.
 
+Ciekawostka dotycząca wszystkich CIE:
+Jak się weźmie obrys tej palety barw i potraktuje jako linię, to wzdłuż jej 
+(od lewego dołu, to prawej góry) są kolejne częstotliwości fali świetlnej, czyli kolory fizyczne
+od ultrafioletu do podczerwieni.
 
+Mamy trzy koncepcje:
+-------------------
+5.1 CIE XYZ
+Barwę są opisane przez "współrzędne trójchromatyczne" dla X, Y, Z, które odpowiadają
+kolorom RGB. Współrzędne są trójwymiarowe, czyli XYZ, to osie w przestrzeni.
 
+-------------------
+5.2 CIE Lab:
 
+Matematyczna transformacje poprzedniczki (XYZ) (można je między sobą konwertować).
+"CIELab jest obecnie najpopularniejszym sposobem opisu barwy i stanowi podstawę 
+współczesnych systemów zarządzania barwą" (wikipedia)
 
+Barwa jest opisywana przez 3 składowe:
+L - Jasność (Lightness)
+a - barwa od zielonej do magenty
+b - barwa od niebieskiej do żółtej
+
+-------------------
+5.3 CIE LUV 
+Też jest matematyczną transformacją CIE XYZ (można je między sobą konwertować).
+
+Korzysta z tego, że dla człowieka barwy przeciwstawne(wykluczające się) to:
+czerwony-zielony, żółty-niebieski
+
+Używany do opisu właściwości kolorowych monitorów graficznych.
 
 
 
