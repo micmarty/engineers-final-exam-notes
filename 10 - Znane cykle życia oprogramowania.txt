@@ -8,6 +8,7 @@ Mamy kilka koncepcji:
 	3.1 Odmiana czysto iteracyjna
 	3.2 Odmiana spiralna
 	3.3 Odmiana przyrostowa
+	3.4 Odmiana prototypowy
 4. Komponentowy
 
 ------------------------------------------------------------------------------------------------------
@@ -153,6 +154,24 @@ Zalety:
 
 
 ------------------------------------------------------------------------------------------------------
+3.4 Model prototypowy - odmiana iteracyjnego
+
+Budujemy prototypy, które nie są prawdziwie zaimplementowanym systemem.
+Pokazujemy klientowi np. mockupy, filmiki, na szybko napisane bez przetestowania,
+bez szczegółów
+
+Zalety:
++ Zaangażowanie klienta, mamy od niego feedback
++ Zamiast wypytywac o wymagania, możemy je po prostu zidentyfikować
++ Walidacja całokształtu systemu, zanim jeszcze go zrobimy
+
+Wady:
+- Klientowi szkoda pieniędzy na coś co nie działa
+- Marnujemy dużo czasu
+- Programiści lubią przenosić prototypowe rozwiązania bez przemyślenia do produkcyjnej wersji
+
+
+------------------------------------------------------------------------------------------------------
 
 4. Model Komponentowy
 
@@ -178,6 +197,7 @@ Wady:
 - Mamy nadmiarowy bagaż kodu, który być może nie robi nic ciekawego, ale musi tam
   być ze względu na modularyzację
 - Komponenty muszą być dobrze udokumentowane i przetestowane
+
 
 
 
