@@ -1,0 +1,175 @@
+﻿5 - Metody dostępu do medium transmisyjnego w lokalnych sieciach komputerowych
+(https://edux.pjwstk.edu.pl/mat/253/lec/SieciLAN.htm)
+(http://slideplayer.pl/slide/1217180/#)
+
+0. (na start, odpowiedź na pytanie) Jakie modele są?
+	0.1 ALOHA i S-ALOHA
+	0.2 CSMA/CD
+	0.3 CSMA/CA
+	0.4 Token passing
+
+1. Dodatkowe informacje
+------------------------------------------------------------------------------------------------------
+0. Jakie modele znam
+
+Zaczynając od najbardziej prymitywnych aż do tych bardziej skomplikowanych, mamy:
+- ALOHA, S-ALOHA (szczelinowa ALOHA)
+- CSMA/CD i CSMA/CA
+- przekazywanie Tokenu (Token passing)
+
+
+
+------------------------------------------------------------------------------------------------------
+0.1 ALOHA i S-ALOHA
+
+(dla przejrzystości nie układam pełnego opisu tylko podpunkty)
+ALOHA:
+- Bardzo prymitywna, nadaje informacje jak tylko się pojawią, bez nasłuchiwania
+- Zatem rywalizacyjny dostęp do medium (każda stacja jest odpowiedzialna za siebie, nie ma centralnego zarządzającego)
+- Długość ramki jest sztywna - zawsze taka sama
+- Po wykryciu kolizji (lub braku ACK), odczekuje losowy czas i retransmituje
+- Uznaje się poprawne dostarczenie gdy ACK z powrotem dotrze do nadawcy
+- Gdy dotrze ona poprawnie do odbiorcy, to wysyłana jest następna
+- Jeśli po transmisji znowu wystąpiła kolizja to backoff(odczekiwanie) jest zwiekszany
+- Efektywne wykorzystanie kanału określa się w rozkładzie Poissona -> max. około 18%
+- Czym więcej stacji w sieci, tylko mniejsza wydajność
+- Zmienne opóźnienie (jitter)
+
+S-ALOHA:
+- Jedyne czym się różni, to możliwość nadawania w szczelinach czasowych (jakby na takt zegara)
+- W połączeniu z wcześniejszymi stałymi długościami ramek z ALOHy, wykorzystanie
+kanału znacznie się poprawia - max. wynosi około 37%
+
+Zalety:
++ proste w implementacji
++ nie ma mastera, który kontroluje medium
++ jeśli tylko jedna stacja chce nadawać w sieci, to wysyła je bardzo szybko, z pełną prędkością
+
+Wady:
+- wystarczy kilka stacji, aby okazało się, że przepustowość jest bardzo niska
+- nie nadaje się do sieci działających w czasi e rzeczywistym
+
+
+
+------------------------------------------------------------------------------------------------------
+0.2 CSMA/CD  - Carrier Sense Multiple Access with Collision Detection
+(http://www.thenetworkencyclopedia.com/entry/carrier-sense-multiple-access-with-collision-detection-csma-cd/)
+
+- Rywalizacyjny dostęp do medium (każda stacja jest odpowiedzialna za siebie, nie ma centralnego zarządzającego)
+- Stacja najpierw nasłuchuje medium (czy występuje nośna), upewniając się, że nikt inny nie nadaje
+- Jeśli nośna jest wykryta, to czeka. Jeśli brak nośnej, to zaczyna nadawać.
+- Jeśli dwie stacje nasłuchiwały chcąc nadawać i zrobią to w tym samym czasie (no bo przeciez wolne medium)
+	to będzie kolizja
+- Stacja które spowodowały kolizję puszczają info innym stacjom o kolizji (jam signal),
+	odczekują jakieś losowe czasy (rząd milisekund) i ponawiają próbę transmisji swoich ramek
+
+Aby sieć działała w miarę efektywnie musi być mało stacji, inaczej wzrośnie liczba kolizji w całej sieci.
+
+
+
+------------------------------------------------------------------------------------------------------
+0.3 CSMA/CA - Carrier Sense Multiple Access with Collision Avoidance
+
+- Powstał na potrzeby sieci bezprzewodowych (802.11). 
+	Rozwiązuje problem "ukrytych" i "odkrytych" stacji
+	Opis + zdjęcie:
+	https://en.wikipedia.org/wiki/Hidden_node_problem#/media/File:Wifi_hidden_station_problem.svg
+	Stacja jes ukryta, kiedy transmisja 2 stacji jest poza zasięgiem jakiejś trzeciej.
+	Trzecia nie wykrywa ruchu tych 2, więc zaczyna nadawać do tej najbliższej, co daje nam kolizję.
+
+	Stacja jest odkryta, kiedy znajduje się w zasięgu nadawcy informacji, ale poza zasięgiem odbiorcy. 
+	Czyli stacje, które są w swoim zasięgu przerywają transmisje, bo wykrywają transmisję dwóch innych
+	stacji, które w ogóle nas nie obchodzą.
+
+- Stacja najpierw ogłacza chęć transmisji. Inne stacje słysząc taki komunikat wiedzą, że nie mogą nadawać
+- Jeśli transmisja ma być duża, to wysyła najpierw małe ramki RTS (Request to Send)
+- Inne stacje, gdy odbiorą taką ramkę, to zaniechają swoich nowych transmisji
+- Adresat po odebraniu tego RTS odsyła CTS (Clear To Send)
+- W ten sposób obie stacje ZAREZEROWAŁY sobie kanał
+- Jeśli nadawca nie dostanie CTS, albo kilka stacji naraz nadało RTS, to zakłada się wystąpienie kolizji,
+wtedy odczekuje się losowy czas (backoff)
+
+
+(Wg mnie nieistotne za bardzo)
+DCF:
+- rywalizacyjny dostęp (z tymi co mają ten sam priorytet)
+- nie gwarantuje określonego poziomu przepustowości dla transmisji głosowych czy wideo
+- powyżej pewnej ilości stacji przepustowość maleje w sposób drastyczny
+
+PCF:
+- opcjonalna, wyżej w hierarchi od DCF
+- ma mechanizmy priorytetyzacji ruchu
+- stacja koordynująca odpytuje stacje na swojej liście wedle kolejności i pozwala na nadawanie
+- czyli jest metoda przepytywania, a nie rywalizacyjną!
+- przypomina token passing
+- metoda synchroniczna, zcentraliozowana w Access Poincie
+
+HCF:
+- 4 priorytety (czyli mechanizm QoS)
+- możliwość bursta, czyli nadawania więcej niż jeden ramki na raz przez stację.
+
+Narzut dodatkowego ogłaszania, czekania sprawia, że jest mniej efektywa od CD, ale przynajmniej
+działą w sieciach bezprzewodowych
+
+------------------------------------------------------------------------------------------------------
+0.4 Token passing 
+
+- Polega na przekazywaniu specjalnej ramki (czyli właśnie tego tokenu) w jednym 
+	kierunku do kolejnych urządzeń, które znajdują się w pierścieniu. 
+- Można łączyć stacje w "wirtuale pierścienie", czyli zmieniać ich kolejność - wymaga wtedy 
+	obsługi dodawania/usuwania stacji (nieważne)
+- Token jest przekazywany tylko, gdy sieć jest wolna.
+- Token precyzuje, że należy do danego nadawcy i pozwala na komunikację z konkretnym odbiorcą
+- Jeśli token otrzyma stacja, która nie ma nic do wysłania, to chwile go może przytrzymać, 
+	gdyby nagle coś się zmieniło i jeśli się nie zmieni to przekazuje dalej.
+
+- Ta metoda nadaje się wtedy kiedy chcemy mieć przewidywalną wartość opóźnień.
+
+W FDDI jest drobna wariacje tej metody - tzw. szybkie uwalnianie tokenu.
+Czyli stacja nadająca nie musi czekać na potwierdzenie otrzymania wiadomości przez odbiorcę, aby 
+przekazać dalej token, tylko robi to od razu (czyli np. wiadomość może być jeszcze w drodze)
+W taki sposób potencjalnie zwiększamy przepustowość sieci/jej wydajność/wydolność.
+
+
+------------------------------------------------------------------------------------------------------
+1. Dodatkowe informacje
+
+Metody/protokoły te mają tak naprawdę uporządkować ruch z warstwy niższej - fizycznej.
+Tym samym oznacza to, że same znajdują się w warstwie łącza danych.
+
+Wybór protokołu zależy od:
+- topologii (pierścień, magistrala, gwiazda)
+- rodzaju medium (skrętka, koncentryk, światłowód)
+
+
+-----------
+Mogą zapytać o model ISO OSI:
+
+7. Aplikacji
+6. Prezentacji
+5. Sesji
+4. Transportowa
+3. Sieciowa
+2. Łącza danych
+1. Fizyczna
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
