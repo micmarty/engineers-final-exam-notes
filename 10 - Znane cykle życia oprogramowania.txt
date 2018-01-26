@@ -1,0 +1,209 @@
+﻿10 - Znane cykle życia oprogramowania
+(https://melsatar.blog/2012/03/15/software-development-life-cycle-models-and-methodologies/)
+
+Mamy kilka koncepcji:
+1. Wodospadowy/Kaskadowy
+2. V
+3. Iteracyjne
+	3.1 Odmiana czysto iteracyjna
+	3.2 Odmiana spiralna
+	3.3 Odmiana przyrostowa
+4. Komponentowy
+
+------------------------------------------------------------------------------------------------------
+1 . Wodospadowy/Kaskadowy - klasyczny
+
+Faktycznie kształtem i zasadą działania przypomina wodospad.
+
+Zasady:
+- Jest sekwenycjny, kolejność etapów jest ustalona. 
+- Do kolejnejnego etapu przechodzimy, dopiero kiedy skończymy poprzedni.
+- Zanim ruszymy z pracami, trzeba dobrze zbadać wymagania inaczej możemy mieć problemy.
+- W przypadku natrafienia na błędy na jakimś etapie, powinniśmy się cofnąć odpowiednio dużo kroków,
+	naprawić je i ponownie przejść przez wszystkie kolejne fazy.
+
+Model ten zakłada zasadę:
+"Miejmy 100% funkcjonalności systemu ukończonego w 60%"
+Na przykładzie rzeźby: lepimy całe ciało, nie skupiamy się na jego poszczególnych częściach
+
+Budowa (fazy):
+1. Planowania
+2. Analizy
+3. Projektowania
+4. Implementecji
+5. Testowania
+6. Wdrożenia
+7. Utrzymywania
+
+Zalety:
++ Jest prosty, jeśli chodzi o zasady
++ Ma sztywno wyznaczone granice, czyli uporządkowany
++ Łatwo się nim zarządza, nadzoruje
+
+Wady:
+- Jest totalnie nieodporny na zmiany wymagań w trakcie prac
+- Stwarza problemy w zrównoleglaniu wykonywanych zadań, bo jeśli mamy różne zespoły, o 
+	różnych umiejętnościach, to nic ciekawego nie mogą wtedy robić
+- Wymaga doświadczenia w wykonywaniu projektów na taką skalę
+- Wysokie ryzyka poniesienia większych kosztów niż oczekiwane
+- Nie skupia się na weryfikacji przez klienta
+- Jeśli klient zażąda ukończenia prac wcześniej, nawet kosztem uboższej funkcjonalności
+	to zaliczamy totalną porażkę, bo nic nie działa w środku wytworzonego produktu
+- To jest następstwo poprzedniego: zarabiamy tylko po ukończeniu prac, a nie w trakcie
+
+Ciekawostka:
+Departament Obrony Narodowej Stanów Zjednoczonych korzysta z tego modelu w tylko trochę 
+zmodyfikowanej formie:
+- Każdy etap jest bardzo dokładnie opisany i udokumentowany
+- Żeby móc przejść do kolejnego etapu, potrzebna jest zgoda klienta
+
+------------------------------------------------------------------------------------------------------
+2. Model V
+
+Jest bardzo podobny do kaskadowego, ale dodaje po każdym etapie specjalną fazę testowania
+Wygląda faktycznie jak literka V, albo dwa wodospady: jeden na przeciwko drugiego.
+
+Budowa:
+1. Opracowanie wymagań 			-> Testy akceptacyjne
+2. Analiza				-> Testy integracyjne
+3. Projektowanie architektury systemu	-> Testy systemowe
+4. Implementacja komponentów 		-> Testy jednostkowe
+
+Zalety:
++ Produkt jest w pełni przetestowany, wysokiej jakości
++ Potencjalnie łatwiejsze utrzymanie w przyszłości
++ Obniża ryzyko błędu, wykrywamy je na każdem etapie
+
+Wady:
+- Ogromny narzut pracy -> czas = pieniądze
+- Rozrośnięta dokumentacja
+- Podobnie jak kaskadowy: słabo radzi sobie ze zmiennymi projektami
+- Podobnie jak kaskadowy: nie skupia się na weryfikacji przez klienta
+
+
+------------------------------------------------------------------------------------------------------
+3.1 Model iteracyjny w czystej postaci
+
+Tworzymy system, który przy każdej wersji będzie miał nowe funkcjonalności, ale nie będzie
+on w pełni gotowy. Każda nowa wersja wprowadza pewne ulepszenia.
+
+Czyli każda ulepszona wersja była:
+- zaplanowana
+- rozbita na zadania
+- zaimplementowana
+- przetestowana
+- można ją pokazać klientowi, skonsultować przed rozpoczęciem następnej iteracji
+
+Zalety:
++ Zmniejszamy ryzyko spowodowane zmieniającymi się wymaganiami
++ Nie skupiamy się na dokumentacji, bo z każdą iteracją wszystko ulega ewolucjom/rewolucjom
++ Klient jest bardziej zaangażowany w proces
++ Równomierna i równoległa praca nad elementami systemu
++ Unikamy jednorazowej integracji (że na końcu pójdzie coś nie tak)
+
+Wady:
+- Może wydawać się chaotyczny i wydłużyć
+- Pewien narzut związany z organizacją iteracji
+
+
+------------------------------------------------------------------------------------------------------
+3.2 Model iteracyjny w odmianie spiralnej
+
+Połączenie modelu kaskadowego z iteracyjnym
+W każdej fazie przerabiamy produkt pod każdym względem (od początku do końca)
+
+Planujemy
+Analizujemy ryzyko
+Implementujemy
+Testujemy
+Wdrażamy
+Planujemy kolejną iterację
+
+Przydatne w dużych projektach, gdzie stałe postępy są istotne
+Kiedy chcemy uniknąć ryzyka zmian wymagań, albo są one niejasne/zbyt złożone
+
+Zalety:
++ Systematyczna i uporządkowana praca
++ Mocno obniżamy ryzyko niepowodzenia
++ Jest możliwość zaangażowania klienta przy każdej nowej wersji
+
+Wady:
+- Pewnie przekroczy budżet i czas
+- Musi być surowo nadzorowany, przestrzegane reguły
+- Dokumentacja jest raczej istotna
+------------------------------------------------------------------------------------------------------
+3.3 Model iteracyjny w odmianie przyrostowej
+(http://www.agile247.pl/podejscie-iteracyjne-oraz-przyrostowe-agilestarter/)
+
+Zasada:
+- Każda dodana do całości funkcjonalność jest w 100% gotowa
+- Po dodaniu jej do systemu, jest on w pełni sprawny, ale oczywiście niedokończony
+- Aby móc to zrobić, musimy miec możliwość podzielenia systemu na osobne podsystemy, które
+nie zależą od siebie tak bardzo - da się je robić w izolacji
+
+
+Opiera się na zasadzie:
+"Miejmy 60% systemu ukończonego w 100%"
+Na przykładzie rzeźby: robimy poszczególne fragmenty ciała od początku do końca
+
+Zalety:
++ W dowolnym momencie możemy pokazać działający system (nawet jeśli jest niepełny)
++ Elastyczny jeśli chodzi o zmianę wymagań
++ Klient zawsze ma możliwość przetestowania kolejnych wersji
+
+
+------------------------------------------------------------------------------------------------------
+
+4. Model Komponentowy
+
+Wykorzystywany przy rozproszonych aplikacjach, takie podejście serwisów.
+
+Zasada:
+- Używamy fragmentów, które już kiedyś lepiliśmy do innych projektów
+- Modyfikujemy, to co trzeba
+- Testujemy integracyjnie (czyli łączenie ich w system)
+
+Wymaganie:
+- Na etapie ich wytwarzania musiało być brane pod uwagę, że
+te komponenty faktycznie mają mieć inne odpowiedzialności i umieć się
+ze sobą porozumiewać przez jakiś interfejs
+
+Zalety:
++ Ultra szybkie i tanie
++ Zmienne wymagania nie powinny być problemem o ile mamy odpowiednio
+  zaprojektowane komponenty
+
+Wady:
+- Nie nadaje się do mocno spersonalizowanych albo dużych projektów
+- Mamy nadmiarowy bagaż kodu, który być może nie robi nic ciekawego, ale musi tam
+  być ze względu na modularyzację
+- Komponenty muszą być dobrze udokumentowane i przetestowane
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
