@@ -1,0 +1,120 @@
+﻿20 - Modele przetwarzania w Internecie
+(Pytanie idealne dla prof. Czarnula)
+
+1. Przetwarzanie scentralizowane
+2 Klient-serwer, wielopienne architektury
+2. Przetwarzanie rozproszone
+	2.1 Peer-to-Peer (P2P)
+	2.2 Przetwarzanie w chmurze (Cloud computing)
+	2.3 Usługi sieciowe (SOA - Service Oriented Architecture)
+	2.4 Grid i Volunteer computing
+	
+	
+-------------------------------------------------------------------------------------------------------
+1. Przetwarzanie scentralizowane
+
+Wszystkim zajmuje się jedna maszyna: od obliczeń po przechowywanie danych.
+Taki sprzęt nazywa się mainframem - są bardzo drogie, wymagają stałej opieki administratora.
+
+Nie oznacza to jednak jednego komputea (jeden user naraz), tylko że fizycznie znajdują się
+w jednym miejscu -> wiele terminali.
+
+To może dyskusyjne, ale dają większe bezpieczeństwo i pewność obliczeń
+(bo nie ma poza hakerami kogoś kto nam w sposób prosty zaszkodzi, środowisko w miarę kontrolowane)
+
+Użytkownicy odbierają tylko gotowe dane.
+
+
+-------------------------------------------------------------------------------------------------------
+2. Klient-serwer i wielopienne architektury
+
+Jest wszechobecyny w aplikacjach webowych. Zasada prosta: Klient wysyła żądanie, serwer przetwarza 
+i odsyła wynik
+
+Możemy potraktować ten model jako:
+- scentralizowany 
+- rozproszony
+
+Scentralizowany wtedy kiedy na jednej maszynie jest wszystko: baza, serwer webowy i aplikacyjny
+Rzecz jasna to nadaje się tylko do małych aplikacji, typowo deweloperskie rozwiązanie - tymczasowe.
+
+Rozproszony wariant natomiast zakłada wielopienność: bazę danych mamy na jednej grupie maszyn, serwer
+webowy na innej, serwer aplikacyjny na jeszcze innej...
+
+
+-------------------------------------------------------------------------------------------------------
+3. Przetwarzanie rozproszone
+
+Przetwarzanie rozproszone natomiast zakłada istnienie fizycznie innych maszyn, nie muszą znajdować
+się w jedny miejscu. Jest wiele modeli które się na nim opierają:
+
+----------------------
+3.1 Peer-to-Peer (P2P)
+
+Ten model traktuje każdą maszynę jak rówieśników, dane nie są w jednym miejscu, lecz u każdego
+
+Przykład: Najpopularniejsza jest protokół BitTorrent oraz czat IRC.
+Dystrybucje linuxowe bardzo lubią mirrorować swoje obrazy na Torrentach
+
+----------------------
+3.2 Przetwarzanie w chmurze (Cloud computing)
+Po prostu uzyskujemy dostęp do jakichkolwiek zasobów znajdujących się w sieci.
+
+Czyli możemy wynająć (abonamenty/subskrypcje):
+- IAAS - Infrastructure as a Service 	-> czysty dostęp do hardware o określonych parametrach 		
+					   np. Google Compute Engine, FloydHub, VPSy
+
+- PAAS - Platform as a Service 		-> dostęp do platformy np. Heroku
+					   to ono się martwi o load balancing, preinstalowane framerworki
+					   kontenery, toole do pushowania z lokalnej maszyny itd.
+					   Zazwyczaj PAAS opiera się na innych dostawcach IAAS 
+					   (taki biznes, ciąg zależności)
+
+- SAAS - Software as a Service 		-> dostęp do software, który coś robi bez instalacji u nas 
+
+- CAAS - Communication as a Service 	-> Slack, Skype, Facebook (tu płacimy prywatnością = reklamy)
+
+
+Wtedy nie martwimy się o awarie sprzętu, ogrom aktualizacji, prąd, administratorów
+Jedyne co się wtedy liczy to: bezpieczeństwo i support :)
+----------------------
+
+
+
+
+
+
+
+
+Różnica między volounteer i P2P:
+- Wszystkie dane są wymieniane pomiędzy rówieśnikami, bez udziału żadnego centralnego serwera
+- Nie ma tam pojęcia pracy nad jednym projektem
+- Nie skupia się na obliczeniach, tylko na wymianie/współdzieleniu plików
+
+
+
+Volunteer computing
+Angażuje ogromną ilość komputerów, które udostępniają swoje zasoby na potrzeby realizacji
+konkretnych projektów. Zazwyczaj projekty te są typowo akademickie, komercyjne odpycha wolontariuszy.
+
+Przykłady:
+- BOINC
+- Comcute z ETI (Alternatywa dla BOINC) - działa bez instalowania, z przeglądarki
+- Szukanie liczb pierwszych Mersenna (GIMPS)
+- Poszukiwanie lekarstw na choroby (Folding@home ze Stanforda)
+- Poszukiwanie życia w kosmosie (SETI@home)
+- Łamanie szyfrów
+
+Nie ma potrzeby identyfikacji użytkowników, zakłada się ich dobrą wolę.
+Wolontarusze musza ufać projektowi, że:
+- nie zaszkodzi ich komputerom
+- ich moc nie zostanie wykorzystana w złych celach
+
+"Tej mocy się nie kupuje, ją się zdobywa"
+Zazwyczaj używa przetrzania typu Grid
+Opiera się na infrastrukturze rozproszonej
+
+
+Różnice w czystym Grid computing i Volunteer computing:
+- Grid zazwyczaj działa symetryczne: coś daje i cos "zabiera"
+- Volunteer jest raczej asymetryczne: tylko "zabiera"
