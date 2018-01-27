@@ -2,12 +2,12 @@
 (Pytanie idealne dla prof. Czarnula)
 
 1. Przetwarzanie scentralizowane
-2 Klient-serwer, wielopienne architektury
-2. Przetwarzanie rozproszone
-	2.1 Peer-to-Peer (P2P)
-	2.2 Przetwarzanie w chmurze (Cloud computing)
-	2.3 Usługi sieciowe (SOA - Service Oriented Architecture)
-	2.4 Grid i Volunteer computing
+2. Klient-serwer, wielopienne architektury
+3. Przetwarzanie rozproszone
+	3.1 Peer-to-Peer (P2P)
+	3.2 Przetwarzanie w chmurze (Cloud computing)
+	3.3 Usługi sieciowe (SOA - Service Oriented Architecture)
+	3.4 Grid i Volunteer computing
 	
 	
 -------------------------------------------------------------------------------------------------------
@@ -20,7 +20,7 @@ Nie oznacza to jednak jednego komputea (jeden user naraz), tylko że fizycznie z
 w jednym miejscu -> wiele terminali.
 
 To może dyskusyjne, ale dają większe bezpieczeństwo i pewność obliczeń
-(bo nie ma poza hakerami kogoś kto nam w sposób prosty zaszkodzi, środowisko w miarę kontrolowane)
+(bo nie ma poza hakerami kogoś kto nam w sposób prosty zaszkodzić, środowisko w miarę kontrolowane)
 
 Użytkownicy odbierają tylko gotowe dane.
 
@@ -45,20 +45,32 @@ webowy na innej, serwer aplikacyjny na jeszcze innej...
 -------------------------------------------------------------------------------------------------------
 3. Przetwarzanie rozproszone
 
-Przetwarzanie rozproszone natomiast zakłada istnienie fizycznie innych maszyn, nie muszą znajdować
-się w jedny miejscu. Jest wiele modeli które się na nim opierają:
+Przetwarzanie rozproszone natomiast zakłada istnienie fizycznie innych maszyn, nie znajdują
+się w jedny miejscu, są połączone siecią. Sprzęt i soft może być bardzo różnorodny - heterogeniczny.
+Jest wiele modeli które się na nim opierają:
+
 
 ----------------------
 3.1 Peer-to-Peer (P2P)
 
-Ten model traktuje każdą maszynę jak rówieśników, dane nie są w jednym miejscu, lecz u każdego
+Ten model traktuje każdą maszynę jak rówieśników, dane nie są w jednym miejscu, lecz u każdego po trochu.
 
-Przykład: Najpopularniejsza jest protokół BitTorrent oraz czat IRC.
-Dystrybucje linuxowe bardzo lubią mirrorować swoje obrazy na Torrentach
+Przykład: Najpopularniejsza P2P to protokół BitTorrent oraz czat IRC.
+Dystrybucje linuxowe bardzo lubią mirrorować swoje obrazy na Torrentach.
+
 
 ----------------------
 3.2 Przetwarzanie w chmurze (Cloud computing)
 Po prostu uzyskujemy dostęp do jakichkolwiek zasobów znajdujących się w sieci.
+
+Wtedy nie martwimy się o awarie sprzętu, licencje, ogrom aktualizacji, prąd, administratorów
+Jedyne co się wtedy liczy to: bezpieczeństwo i support :) - polegamy na 3rd party! potencjalnie niebezpieczne dla naszej firmy
+Wymaga stałego, stabilnego i szybkiego łącza zazwyczaj.
+
+Typy chmur:
+- Publiczne (Google Cloud, Azure, AWS)
+- Prywatne
+- Hybrydowe (połączenie powyższych)
 
 Czyli możemy wynająć (abonamenty/subskrypcje):
 - IAAS - Infrastructure as a Service 	-> czysty dostęp do hardware o określonych parametrach 		
@@ -71,50 +83,75 @@ Czyli możemy wynająć (abonamenty/subskrypcje):
 					   (taki biznes, ciąg zależności)
 
 - SAAS - Software as a Service 		-> dostęp do software, który coś robi bez instalacji u nas 
+					   np. Microsoft Office 365, Dropbox, Slack
 
 - CAAS - Communication as a Service 	-> Slack, Skype, Facebook (tu płacimy prywatnością = reklamy)
 
 
-Wtedy nie martwimy się o awarie sprzętu, ogrom aktualizacji, prąd, administratorów
-Jedyne co się wtedy liczy to: bezpieczeństwo i support :)
+
+----------------------
+3.3 Usługi sieciowe (SOA - Service Oriented Architecture)
+
+Rozproszone komponenty, które służą do wymiany danych, udostępniają jakiś interfejs do komunikacji.
+Każdy sewis powinien się w czymś specjalizować i w razie potrzeby prosić inne o pomoc (outsourcing)
+
+Klient może wchodzić z serwisem w interakcje, a ten może potrzebować kilku innych serwisów.
+Klienta natomiast nie interesuje wewnętrzna implementacja, tylko jak się z serwisem obchodzić, żeby
+dostać wynik.
+
+Możemy komunikować się z nimi za pomocą protokołów komunikacyjnych: REST, SOAP
+Serwisy w SOAP są ładnie opisane w WSDL, a można je odnaleźć w nieżyjącym już UDDI
+
+
 ----------------------
 
+3.4 Grid computing i Volunteer
+
+------------------------------
+Grid
+Współdzeli jakiś kontrolowany zasób: CPU, GPU, dysk
+Daje przezroczysty dostęp do zasobów obliczeniowych (nie musimy wiedziec kto i jak robi obliczenia) -
+robi to za nas grid middleware
+
+Hardware i software jest:
+- Rozproszony geograficznie
+- Dynamiczny  (zmienia się ilość)
+- Heterogeniczny (różnorodny)
+- Zarządzane przez różne jednostki (każdy ma inne zasady bezpieczeństwa, politykę)
+
+Problemy:
+- uwierzytelnianiem
+- dołączaniem/instalowaniem nowych węzłów
+- pisaniem aplikacji które wykorzystują całą siatkę
 
 
+------------------------------
+Volunteer computing 
+Angażuje ogromną ilość komputerów, które udostępniają swoje zasoby na potrzeby realizacji
+konkretnych projektów. Zazwyczaj projekty te są typowo akademickie, komercyjne odpycha wolontariuszy.
 
-
-
-
+"Tej mocy się nie kupuje, ją się zdobywa"
+Zazwyczaj używa przetrzania typu Grid, choć może to być klient-serwer
+Opiera się na infrastrukturze rozproszonej
 
 Różnica między volounteer i P2P:
 - Wszystkie dane są wymieniane pomiędzy rówieśnikami, bez udziału żadnego centralnego serwera
 - Nie ma tam pojęcia pracy nad jednym projektem
 - Nie skupia się na obliczeniach, tylko na wymianie/współdzieleniu plików
 
-
-
-Volunteer computing
-Angażuje ogromną ilość komputerów, które udostępniają swoje zasoby na potrzeby realizacji
-konkretnych projektów. Zazwyczaj projekty te są typowo akademickie, komercyjne odpycha wolontariuszy.
+Różnice w czystym Grid computing i Volunteer computing:
+- Grid zazwyczaj działa symetryczne: coś daje i cos "zabiera"
+- Volunteer jest raczej asymetryczne: tylko "zabiera"
 
 Przykłady:
-- BOINC
+- BOINC (z Berkley, obsługuje kilka GPU)
+- Globus Toolkit
 - Comcute z ETI (Alternatywa dla BOINC) - działa bez instalowania, z przeglądarki
 - Szukanie liczb pierwszych Mersenna (GIMPS)
 - Poszukiwanie lekarstw na choroby (Folding@home ze Stanforda)
 - Poszukiwanie życia w kosmosie (SETI@home)
 - Łamanie szyfrów
 
-Nie ma potrzeby identyfikacji użytkowników, zakłada się ich dobrą wolę.
-Wolontarusze musza ufać projektowi, że:
-- nie zaszkodzi ich komputerom
-- ich moc nie zostanie wykorzystana w złych celach
-
-"Tej mocy się nie kupuje, ją się zdobywa"
-Zazwyczaj używa przetrzania typu Grid
-Opiera się na infrastrukturze rozproszonej
-
-
-Różnice w czystym Grid computing i Volunteer computing:
-- Grid zazwyczaj działa symetryczne: coś daje i cos "zabiera"
-- Volunteer jest raczej asymetryczne: tylko "zabiera"
+Wady:
+- Trzeba ufać klientowi, że nas nie szpieguje i nie wykorzysta nas w złych celach (np. DDoS
+- Projekt musi ufać, że klient za bardzo nie oszuka go z wynikami
