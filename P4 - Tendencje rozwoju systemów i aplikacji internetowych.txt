@@ -1,0 +1,95 @@
+﻿P4 - Tendencje rozwoju systemów i aplikacji internetowych
+
+Ta branża zmienia się baaardzo dynamicznie, ale na podstawie moich obserwacji
+zauważyłem kilkanaście bardzo ciekawych rozwiązać, które mają szanse zostać z nami
+na stałe:
+
+1. Analiza danych - firmy mają tak dużo informacji, że mają kilka wyjść, albo
+			je sprzedawać (o ile mają jakąś wartość dla innych),
+			albo użyć ich do profilowania użytkowników, optymalizowania
+			kosztów. 
+			Przykłady: Spotify (Machine learning do sugerowania utworów)
+
+2. Wykorzystywanie AI - to jest następstwo poprzedniego punktu. Rozpoznawanie preferencji,
+			sugerowanie reklam nie jest niczym nowym, ale dzięki AI staje się
+			jeszcze lepsze. 
+			Wykorzystuje się ją również do znajdowania podatności w aplikacjach,
+			przaranżowywania designu stron (układ popularnych elementów)
+			Rozpoznawanie mowy - asystentki: Alexa, Siri, Bixbee, Google
+			
+3. Przenoszenie wszystkiego - Czyli użytkownicy nie posiadają fizycznie aplikacji bez internetu...
+   do chmur jako usługi	      Tu zalicza się wszystkie usługi streamingowe: Office, Netflix, Spotify, 
+			      Google Docs, Google Drive itd.
+			      Oczywiście to się opiera na ciekawym modelu biznesowym: abonament/subskrypcja
+
+4. Integracje z social media - Podpinanie rejestracji pod Google, Facebook, Github. 
+			       Korzyść jest taka, że user może odpiąć potem swoje konto z jednego miesjca.
+
+5. Minimalizm w UX, responsywność - Era nieczytelnych stron powoli się kończy, stawia się na przejrzystość
+				    nowoczesny wygląd, który skupia naszą uwagę tylko na kilku miejscach
+				    Ze względu na ogromną rozpiętość w rozmiarze ekranów (smartfony i PC)
+				    Trzeba zadowolić każdego użytkownika.
+
+6. Powiadomienia Push w przeglądarkach - Wodotryski JS pozwalają nam traktować przeglądarkę trochę jak
+					 klienta poczty, smartfon.
+
+7. WebAssembly -> Powrót trochę do korzeni, czyli idea maszyny wirtualnej w przeglądarce i programowanie
+		niskopoziomowe, wydajne. Bardzo dawno temu to Java pełniła taką funkcję, teraz JS. Tak czy 
+		siak przeglądarki mają swoje masyzny wirtualne wewnątrz do sandboxowania, ale nie mamy wprost
+		do niej dostępu.
+		WebAssembly polega na odpalaniu/kompilacji programów w C i Rust (<3) wpinając się w VM.
+		Mamy dostęp do backendu kompilatora LLVM, co daje ogrom możliwości.
+		Póki stosuje się je do gier, ale wzrosty wydajności względem JS są ponad dziesięciokrotne.
+
+8. CSS Grid -> Odchodzimy powoli od brzydkiego Bootstrapa, ohydne zagnieżdżenia, nieczytelność
+		CSS Grid jest wspierany przez każdą cywilizowaną przeglądarkę. Pozwala w bardzo
+		estetyczny i przejrzysty sposób designować układ strony.
+
+9. Polymer -> Ogromnie nieprzyjemne dla programistów jest tworzenie własnych kontrolek, mnóstwo 
+		duplikacji kodu, bleee. Polymer project pozwala tworzyć własne tagi HTML i używać
+		je po swojemu, wedle naszego projektu. 
+		Wg mnie to stanowi przyszłość web developmentu: ludzie będą używali gotowców i je
+		przerabiali. Korzyść jest taka, że przyspiesza pracę, jest czytelne.
+		Opiera się oczywiście o JS
+
+10. Electron -> (projekt Githubowy)
+		Trend, który niektórych odrzuca, innych fascynuje. Idea jest taka aby tworzyć
+		ultraprzenośne aplikacje na każdą platformę przy użyciu HTML, CSS, JS.
+		Pod spodem działą silnik przeglądarki Chrome, bez tej całej swojej otoczki, tylko mięso.
+		(Podobna idea do Cordoba). Wygryza natywne aplikacje ze smartfonów.
+
+		Zalety: Piszesz raz, działa wszędzie, pozwala na piękne efekciarstwo wizualne, 
+			mnóstwo gotowych JS bibliotek
+		Wady: zżera ogromne ilości RAMu, jest wolniejszy niż natywne
+
+		Przykłady: Atom, GitKraken, Slack, VS Code
+
+11. Instant apps,		-> Dotyczy smartfonów. Koniec z natywnymi rozwiązaniami, instalowaniem
+Google progressive web apps	   aktualizowaniem. Wszystko na JS, silnik Chrome. Pozwala na pracę offline.
+				   Pozwala na push noticications, skrót na pulpicie	
+
+12. Blockchain -> zdecentralizowane aplikacje, niezaprzeczalne informacje, każdy posiada zaszyfrowaną
+		kopię historii. 
+ 		Potencjale zastosowania: 
+		- kryptowaluty (już się od dawna dzieje)
+		- kontrakty między użytwnikami
+		- ochrona własności intelektualnej
+
+		Temat rzeka, łątwo go zbyt uprościć, łatwo wpakować się w dyskusję polityczną...
+		
+		Luźne hasła:
+		smart contracts w Ethereum, proof-of-stake, proof-of-work
+		CryptoKitties, ByteBall, Monero, Cardano
+		Niby tak dużo o tym wiem, ale ciężko się to opisuje...
+
+13. Kopanie kryptowalut -> 		strony powoli zaczynają używać mocy obliczeniowej userów, 
+przez użytkownika w przeglądarce 	żeby zarabiać na wykopanych hajsach
+zamiast reklam
+
+14. Chatboty -> Trend, któy jest związany z AI. Microsoft ma to w Skype, Slack, ByteBall
+
+Inne:
+SPA - single page applications
+Typescript
+UWP - universal windows platform
+MotionUI
