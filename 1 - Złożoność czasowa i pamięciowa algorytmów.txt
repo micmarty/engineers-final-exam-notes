@@ -1,0 +1,5 @@
+﻿1 - Złożoność czasowa i pamięciowa algorytmów
+
+Opracowanie z Google docs jest good enough.
+
+http://coding-geek.com/how-databases-work/

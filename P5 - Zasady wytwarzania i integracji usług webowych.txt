@@ -1,5 +1,8 @@
 ﻿P5 - Zasady wytwarzania i integracji usług webowych (UDDI, WSDL, SOAP)
 
+(TODO chaos monkey at netflix)
+
+
 1. (Definicja usługi webowej, czym jest?)
 1.1 Podstawowym pojęciem w tym temacie jest usługa webowa, jej istota jest całkiem prosta.
 
@@ -106,8 +109,10 @@ jest dłuższe niż się oczekuje.
 
 2.4 REST jest standardem architektonicznym
 z ang. REpresentational State Transfer
+(https://www.youtube.com/watch?v=Bh5csZWenUM)
 
-To styl architektoniczny dla usług webowych
+To styl architektoniczny dla usług webowych.
+Najważniejszy jest zasób, który jest opisany przez URI
 
 - oparty o HTTP/S
 - wspiera format JSON (domyślny) i XML
@@ -119,6 +124,8 @@ To styl architektoniczny dla usług webowych
 - nieustandaryzowany tak jak SOAP, łatwiej w nim o chaos
 - jeżeli jest połączony z HATEOAS jest bardzo czytelny (zawiera linki do zasobów w odpowiedzi)
 
+
+HATEOAS - Hypermedia As The Engine Of Application State
 {
 "id": 1,
 "result": "Anna",
@@ -134,7 +141,8 @@ To styl architektoniczny dla usług webowych
 	]
 }
 
-
+Ciekawostka:
+Największą aplikacją restową jest WWW xD
 
 3. Jak integrować ze sobą usługi jeżeli mamy ich mnóstwo
 

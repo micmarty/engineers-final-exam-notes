@@ -1,5 +1,7 @@
 ﻿7 - Paradygmaty programowania obiektowego
 
+<Miałem to pytanie i nie zadano mi żadnych pytań, zbyt proste...>
+
 Na programowanie obiektowe składają się 4 mechanizmy/reguły
 - abstrakcja
 - dziedziczenie

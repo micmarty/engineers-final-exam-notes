@@ -65,6 +65,7 @@ Wady:
 
 Aby sieć działała w miarę efektywnie musi być mało stacji, inaczej wzrośnie liczba kolizji w całej sieci.
 
+Wykorzystywany w Ethernecie, na half-duplex
 
 
 ------------------------------------------------------------------------------------------------------

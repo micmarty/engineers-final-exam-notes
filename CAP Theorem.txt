@@ -1,0 +1,14 @@
+﻿CAP Theorem
+(https://www.youtube.com/watch?v=k1dtA14EYrk)
+
+C - Consistency - każdy dostaje ten sam zestaw danych, nie ma dirty read
+A - Availability - system zawsze da odpowiedź, bez względu na obciążenie, opóźnienie
+P - Partition Tolerance - tolerancja sytuacji, gdy stacje mają problemy z komunikacją między sobą
+
+Możemy mieć maksymalnie 2 spośród tych rzeczy na raz.
+Projektowanie musi uwzględnić, co jest dla nas ważne.
+Nie musimy wybierać binarnie, ale skalować sobie jak bardzo coś potrzebujemy
+(manipulacja punktem w trójkącie)
+
+Przedstawia się go jako trójkąt, gdzie wierzchołki są: CAP
+Ta teoria odnosi się do systemów rozproszonych (np. baza danych na klastrze)

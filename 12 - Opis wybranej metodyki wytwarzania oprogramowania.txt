@@ -4,7 +4,6 @@ Niektóre źródła:
 http://adku.pl/kanban-wydajnosc-it/
 https://www.youtube.com/watch?v=CD0y-aU1sXo
 
-
 1. Wstęp i geneza powstania Kanbana
 2. Po co powstał? Jakie problemy miał rozwiązać?
 3. Kanban w IT - przezroczystość, tablica, limity, priorytety na bieżąco (insertion sort)

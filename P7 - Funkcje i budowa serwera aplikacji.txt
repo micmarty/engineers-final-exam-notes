@@ -37,7 +37,7 @@ Apache HTTP Server, Nginx, WEBrick
 
 - Stanowi logikę aplikacji
 
-- Wstrzykiwanie zależności
+- Wstrzykiwanie zależności  (np. Entity Manager)
 
 - Regulują dostęp do zasobów (autoryzacja, uwierzytelnianie)
 

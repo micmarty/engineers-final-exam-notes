@@ -1,5 +1,10 @@
 ﻿19 - Główne techniki zwiększania wydajności współczesnych procesorów
 
+<Podobno warto wspomnieć o QPI - Quick Path Interconnect od Intela>
+<Podobno lepiej trzymać się pytania -> "współczesnych procesorów", czyli
+można ominąć taktowanie, hyperthreading, a zaznaczyć wielordzeniowość>
+
+
 1.
 Na przestrzeni lat wymyślono mnogość technik, które pozwalają wykrzesać większą prędkość wykonywania
 instrukcji przez procesory. 

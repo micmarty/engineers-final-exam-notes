@@ -111,6 +111,7 @@ odzwierciedlić wszystkich możliwych kolorów.
 
 5.1
 CIE -> wytwór jakiejś francuskiej komisji.
+(http://home.agh.edu.pl/~tarasiuk/dydaktyka/doc/GFK/S/03.pdf)
 
 Ciekawostka dotycząca wszystkich CIE:
 Jak się weźmie obrys tej palety barw i potraktuje jako linię, to wzdłuż jej 

@@ -21,6 +21,13 @@ Modele (7) można podzielić na generacje :
 	- obiektowy (około 85)
 	- obiektowo-relacyjny
 
+<Można wspomnieć o nierelacyjnych, ale nie wiem czy warto>
+
+Ciekawostka - NoSQL nie oznacza nie-tylk-relacyjny, ani nierelacyjny, jest tylko
+nazwą nadaną eventowi w San Francisco dotyczącego dyskusji o problemach relacyjnych baz
+i potencjalnych ulepszeniach.
+
+
 -------------------------------------------------------------------------------------------------------
 2. Modele
 
@@ -155,14 +162,6 @@ Mamy też:
 
 2.7 Jest jeszcze Obiektowo-relacyjny model, który jest połączeniem tych dwóch.
 Odsuwa nas od konkretnego języka, aplikacji i przybliża ponownie do aspektu danych.
-
-
-
-
-
-
-
-
 
 
 

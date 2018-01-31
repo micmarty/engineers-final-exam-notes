@@ -13,7 +13,7 @@ pasował do naszego problemu. Każdy z nich niesie ze sobą nie tylko korzyści,
 (Ciekawostka:
 genezą powstania większości obecnie popularnych wzorców jest książka od wzorcach autorstwa 
 Gang czworga(Gang of Four), która powstałą w 1994 roku.)
-
+	
 2. Korzyści
 
 - Dużo większa czytelność kodu i intencji innych programistów. 
@@ -58,7 +58,10 @@ Przykłady (https://refactoring.guru/design-patterns/creational-patterns):
 - Singleton
 - Budowniczy (Builder)
 
-Fabryka - TODO
+Fabryka - Wtedy kiedy nie chcemy sami podejmować decyzji, który obiekt ma powstać.
+		Np. przekazujemy do fabryki string: "Circle", "Square" i to fabryka
+		wie jak faktycznie nazywają się te klasy w programie np. ServoCircleBumper, 
+		SquareFigure (wiem...  silly)
 
 Singleton - sprawia, że możemy utworzyć tylko jeden obiekt danej klasy i jest on globalny.
 	Implementuje się go przez publiczną, statyczną metodę klasy, która sprawdza czy już nie istnieje

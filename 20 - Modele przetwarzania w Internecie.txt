@@ -124,7 +124,7 @@ Problemy:
 - dołączaniem/instalowaniem nowych węzłów
 - pisaniem aplikacji które wykorzystują całą siatkę
 
-
+Do komunikacji węzłów używa się zazwyczaj MPI, albo PVM (kiedyś)
 ------------------------------
 Volunteer computing 
 Angażuje ogromną ilość komputerów, które udostępniają swoje zasoby na potrzeby realizacji

@@ -50,6 +50,7 @@ jest to 10 ogólnych zasad, które sprawią, że raczej niczego nie pominiemy.
 10. Pomoc i dokumentacja - jakaś strona www, efektywne wyszukiwanie po 
 	słowach kluczowych, nawigacja, zwijanie elementów
 
+<Używając mnemotechnik można zapamiętać to w banalny sposób, patrz plik Nielsen.jpg>
 
 
 4. Oczywiście istnieje dużo więcej rad dotyczących interfejsów.

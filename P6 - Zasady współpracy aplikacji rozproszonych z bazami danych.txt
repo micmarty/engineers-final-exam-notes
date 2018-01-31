@@ -1,0 +1,14 @@
+﻿P6 - Zasady współpracy aplikacji rozproszonych z bazami danych
+(https://stackoverflow.com/questions/46737122/database-connection-in-web-application)
+
+<Miałem to pytanie - szczególnie warto wspomnieć o CAP Theorem>
+
+ORMy
+Heterogeniczne środowisko (różne silniki, różne frameworki)
+CAP Theorem (patrz .txt)
+Transakcje
+Cachowanie (Redis, Inmemory cache)
+Mikroserwisy: każdy serwis zazwyczaj ma własną bazę
+Sticky session
+
+
