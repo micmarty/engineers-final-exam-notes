@@ -16,6 +16,8 @@
 3. O ile nie trafi się na speca z danej dziedziny, to nie usłyszycie żadnych precyzyjnych, szczegółowych pytań.
 4. Osobiście uważam, że warto tworzyć mimo wszystko własne opracowania od zera i porównywać z tym co jest w innych opracowanich
 
-## Powodzenia!
+## Powodzenia & enjoy this cringe!
+http://nodtotherhythm.com/?GKir0Dew
+
 
 
