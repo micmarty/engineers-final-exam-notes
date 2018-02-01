@@ -13,8 +13,7 @@
 
 1. Nie zdążycie/nie pozwolą wam opowiedzieć nawet połowy tego sobie zaplanowaliście.
 2. Egzamin trwa równo 20 minut (można powiedzieć z zegarkiem w ręku).
-3. O ile nie trafi się na speca z danej dziedziny, to nie usłyszycie żadnych precyzyjnych, szczegółowych pytań.
-4. Osobiście uważam, że warto tworzyć mimo wszystko własne opracowania od zera i porównywać z tym co jest w innych opracowanich
+3. Osobiście uważam, że warto tworzyć mimo wszystko własne opracowania od zera i porównywać z tym co jest w innych opracowanich
 
 ## Powodzenia & enjoy this cringe!
 http://nodtotherhythm.com/?GKir0Dew
